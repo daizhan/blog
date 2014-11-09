@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
+import os
+
 LOCAL_HOST = ''
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 class CommonConfig():
     """ global config """
@@ -11,4 +14,7 @@ class CommonConfig():
     DB_PASSWORD = ''
     DB_HOST = LOCAL_HOST
     DB_PORT = ''
+
+    # log
+    log_path = os.path.join(BASE_DIR, 'log/application/')
 

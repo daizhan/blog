@@ -8,6 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
+from datetime import date
 from blog.config import CommonConfig
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -22,7 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'k2ult1sb6a^3%ini9biku^vtmt-(+im1__&*izcir0ssislod5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = (
@@ -32,7 +34,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'blog/repository/templates')
 )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['daizhan.com', '192.168.154.206']
 
 
 # Application definition
@@ -99,3 +101,85 @@ STATICFILES_DIRS =(
     os.path.join(BASE_DIR, 'blog/repository/static')
 )
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'short': {
+            'format': "%(levelname)s %(asctime)s \"%(message)s\" ",
+            'datefmt': "%Y-%m-%d %H:%M:%S",
+        },
+        'normal': {
+            'format': "%(levelname)s %(asctime)s %(pathname)s %(lineno)s \"%(message)s\" ",
+            'datefmt': "%Y-%m-%d %H:%M:%S",
+        },
+        'long':{
+            'format': "%(levelname)s %(name)s %(asctime)s %(pathname)s %(funcName)s %(lineno)s \"%(message)s\" ",
+            'datefmt': "%Y-%m-%d %H:%M:%S",
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        },
+        'require_debug_true': {
+            '()': 'blog.utils.log.RequireDebugTrue'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'formatter': 'long',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+        'request': {
+            'level': 'INFO',
+            'formatter': 'short',
+            'filters': ['require_debug_false'],
+            'class': 'logging.FileHandler',
+            'filename': '%s%s.log' % (CommonConfig.log_path, date.today()),
+            'encoding': 'utf-8',
+            'delay': True,
+        },
+        'save_to_file':{
+            'level': 'INFO',
+            'formatter': 'normal',
+            'filters': ['require_debug_false'],
+            'class': 'logging.FileHandler',
+            'filename': '%s%s.log' % (CommonConfig.log_path, date.today()),
+            'encoding': 'utf-8',
+            'delay': True,
+        },
+        'django_console':{
+            'level': 'DEBUG',
+            'formatter': 'short',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        },
+        'console':{
+            'level': 'DEBUG',
+            'formatter': 'long',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['request', 'django_console'],
+            'level': 'DEBUG',
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'blog': {
+            'handlers': ['save_to_file', 'console', 'mail_admins'],
+            'level': 'DEBUG',
+        },
+    }
+}
+
