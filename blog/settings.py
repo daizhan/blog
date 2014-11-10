@@ -34,7 +34,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'blog/repository/templates')
 )
 
-ALLOWED_HOSTS = ['daizhan.com', '192.168.154.206']
+ALLOWED_HOSTS = ['bigzhan.com']
 
 
 # Application definition
@@ -46,7 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'south',
+    # 'south',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -91,6 +91,9 @@ USE_L10N = True
 USE_TZ = True
 
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/home/daizhan/bigzhan.com/media/' 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
@@ -101,7 +104,7 @@ STATICFILES_DIRS =(
     os.path.join(BASE_DIR, 'blog/repository/static')
 )
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = '/home/daizhan/bigzhan.com/static/' 
 
 LOGGING = {
     'version': 1,
