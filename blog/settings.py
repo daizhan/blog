@@ -23,8 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'k2ult1sb6a^3%ini9biku^vtmt-(+im1__&*izcir0ssislod5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = CommonConfig.debug
 
 TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = (
@@ -34,7 +33,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'blog/repository/templates')
 )
 
-ALLOWED_HOSTS = ['bigzhan.com']
+ALLOWED_HOSTS = CommonConfig.allow_host
 
 
 # Application definition
@@ -46,7 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'south',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -92,7 +91,7 @@ USE_TZ = True
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/home/daizhan/bigzhan.com/media/' 
+MEDIA_ROOT = CommonConfig.media_root
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
@@ -104,7 +103,7 @@ STATICFILES_DIRS =(
     os.path.join(BASE_DIR, 'blog/repository/static')
 )
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/daizhan/bigzhan.com/static/' 
+STATIC_ROOT = CommonConfig.static_root
 
 LOGGING = {
     'version': 1,

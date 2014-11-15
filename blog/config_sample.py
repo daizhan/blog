@@ -3,10 +3,16 @@
 import os
 
 LOCAL_HOST = ''
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = '' # absolute path
 
 class CommonConfig():
     """ global config """
+
+    # debug
+    debug = False
+
+    # when debug is close, allow host must be configured
+    allow_host = []
 
     # database connection
     DB_NAME = ''
@@ -16,5 +22,11 @@ class CommonConfig():
     DB_PORT = ''
 
     # log
-    log_path = os.path.join(BASE_DIR, 'log/application/')
+    log_path = os.path.join(BASE_DIR, 'log path')
+
+    # media root
+    media_root = os.path.join(BASE_DIR, 'media root path')
+
+    # static root
+    static_root = os.path.join(BASE_DIR, 'static root path')
 
