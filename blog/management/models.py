@@ -8,7 +8,8 @@ from blog.const.choices import StatusType, GenderType, UserType
 
 class User(models.Model):
     nickname = models.CharField("昵称", max_length=20)
-    password = models.CharField("密码", max_length=50, default='', blank=True)
+    password = models.CharField("密码", max_length=50, default='', blank=True,
+                                help_text="普通用户不需要密码，其他用户必须填写密码")
     email = models.EmailField("邮箱", db_index=True)
     avatar = models.ImageField("头像", upload_to=set_upload_path, default=None,
                                blank=True, null=True)
