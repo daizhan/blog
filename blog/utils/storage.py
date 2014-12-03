@@ -180,6 +180,7 @@ class ConstType(type):
         attrs_label = {}
         new_attrs = {}
         labels_to_values = {}
+        values_to_labels = {}
         for k, v in attrs.items():
             if k.startswith('__'):
                 continue
@@ -188,10 +189,12 @@ class ConstType(type):
                 attrs_label[k] = v[1]
                 new_attrs[v[0]] = v[1]
                 labels_to_values[v[1]] = v[0]
+                values_to_labels[v[0]] = v[1]
             elif isinstance(v, dict) and 'label' in v:
                 attrs_value[k] = v['value']
                 attrs_label[k] = v['label']
                 labels_to_values[v['label']] = v['value']
+                values_to_labels[v['value']] = v['label']
                 new_attrs[v['value']] = v['label']
             else:
                 attrs_value[k] = v
@@ -203,6 +206,7 @@ class ConstType(type):
         obj.values = attrs_value
         obj.labels = attrs_label
         obj.labels_to_values = labels_to_values
+        obj.values_to_labels = values_to_labels
         obj.attrs = new_attrs
         return obj
 
