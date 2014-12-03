@@ -7,15 +7,12 @@ import hashlib
 from datetime import datetime
 import time
 
-from blog.settings import MEDIA_ROOT
-
 
 def set_upload_path(model_ins, filename):
-    model_name = model_ins.__name__.lower()
-    path = "%s/%s" (model_name, datetime.now().strftime('%Y/%m/%d'))
-    full_path = os.path.join(MEDIA_ROOT, path)
+    model_name = model_ins.__class__.__name__.lower()
+    path = "%s/%s" % (model_name, datetime.now().strftime('%Y/%m/%d'))
     uniq_name = hashlib.md5(filename+str(time.time())).hexdigest()
-    return os.path.join(full_path, uniq_name)
+    return os.path.join(path, uniq_name)
 
 
 def img_thumb(model_ins):
@@ -34,3 +31,30 @@ def avatar_thumb(model_ins):
     return html
 avatar_thumb.allow_tags = True
 avatar_thumb.short_description = "头像"
+
+
+def get_record_time(dt):
+    if dt:
+        return dt.strftime('%Y-%m-%d %H:%M:%S')
+    else:
+        return ''
+
+
+def get_create_time(model_ins):
+    return get_record_time(model_ins.create_time)
+get_create_time.short_description = "创建时间"
+
+
+def get_update_time(model_ins):
+    return get_record_time(model_ins.update_time)
+get_update_time.short_description = "更新时间"
+
+
+def get_online_time(model_ins):
+    return get_record_time(model_ins.online_time)
+get_online_time.short_description = "上线时间"
+
+
+def get_offline_time(model_ins):
+    return get_record_time(model_ins.offline_time)
+get_offline_time.short_description = "下线时间"
