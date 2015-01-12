@@ -9,8 +9,9 @@ from blog.utils.log import logger
 
 
 def test(reqeust, *args, **kwargs):
-    """ this is a test handler """
-    logger.info("i am a log info")
-    print "print test"
     context = {'now_time': datetime.now()}
+    logger.info('logger info test')
     return render_to_response('test.html', context)
+
+def wangkui(reqeust, *args, **kwargs):
+    return render_to_response('wangkui.html')

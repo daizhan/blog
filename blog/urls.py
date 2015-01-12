@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', 'blog.views.test', name="test"),
+    url(r'^wangkui/$', 'blog.views.wangkui', name="wangkui"),
 )
 
 if DEBUG:
