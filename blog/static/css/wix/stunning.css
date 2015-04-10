@@ -140,12 +140,13 @@ a:hover{
     line-height: 1.3;
     color: rgb(52,51,51);
 }
-.categories ul li a{
-    font-size: 14px; 
-    display: block;
+.categories .see-more{
     margin: 5px 0 10px;
 }
-.categories ul li a small{
+.categories ul li p a{
+    font-size: 14px; 
+}
+.categories ul li p a small{
     font-size: 8px;
     vertical-align: middle;
 }
