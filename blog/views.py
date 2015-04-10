@@ -15,3 +15,7 @@ def test(reqeust, *args, **kwargs):
 
 def wangkui(reqeust, *args, **kwargs):
     return render_to_response('wangkui.html')
+
+
+def wix_stunning(reqeust, *args, **kwargs):
+    return render_to_response('wix_stunning.html')

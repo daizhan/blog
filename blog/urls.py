@@ -19,6 +19,7 @@ urlpatterns = patterns('',
 
     url(r'^$', 'blog.views.test', name="test"),
     url(r'^wangkui/$', 'blog.views.wangkui', name="wangkui"),
+    url(r'^wix/stunning/$', 'blog.views.wix_stunning', name="wix-stunning"),
 )
 
 if DEBUG:
