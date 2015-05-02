@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+    <head>
+        {% block title %}
+            <title>Pet Shop</title>
+        {% endblock %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <link rel="stylesheet" type="text/css" href="/static/css/wix/petshop.css" />
+    </head>
+    <body>
+        {% block header %}
+            <div class="header">
+                <div class="wrapper">
+                    <a class="logo" href="" title="petshop"><img src="/static/images/wix/petshop/logo.gif" alt="petshop logo"></a>
+                    <ul class="nav">
+                        {% ifequal nav_pos 'home' %}
+                            <li class="current first"><a href="/wix/petshop/index/">Home</a></li>
+                        {% else %}
+                            <li class="first"><a href="/wix/petshop/index/">Home</a></li>
+                        {% endifequal%}
+                        {% ifequal nav_pos 'mart' %}
+                            <li class="current"><a href="/wix/petshop/mart/">PetMart</a></li>
+                        {% else %}
+                            <li><a href="/wix/petshop/mart/">PetMart</a></li>
+                        {% endifequal%}
+                        {% ifequal nav_pos 'aboutus' %}
+                            <li class="current"><a href="/wix/petshop/aboutus/">About us</a></li>
+                        {% else %}
+                            <li><a href="/wix/petshop/aboutus/">About us</a></li>
+                        {% endifequal%}
+                        {% ifequal nav_pos 'blog' %}
+                            <li class="current"><a href="/wix/petshop/blog/">Blog</a></li>
+                        {% else %}
+                            <li><a href="/wix/petshop/blog/">Blog</a></li>
+                        {% endifequal%}
+                        {% ifequal nav_pos 'guide' %}
+                            <li class="current"><a href="/wix/petshop/guide/">Pet Guide</a></li>
+                        {% else %}
+                            <li><a href="/wix/petshop/guide/">Pet Guide</a></li>
+                        {% endifequal%}
+                        {% ifequal nav_pos 'contact' %}
+                            <li class="current"><a href="/wix/petshop/contact/">Contact us</a></li>
+                        {% else %}
+                            <li><a href="/wix/petshop/contact/">Contact us</a></li>
+                        {% endifequal%}
+                    </ul>
+                </div>
+            </div>
+        {% endblock %}
+        {% block body %}
+            <div class="body">  
+                {% block main %} {% endblock %}
+            </div>
+        {% endblock %}
+        {% block footer %}
+            <div class="footer">
+                <div class="take-care-pets">
+                    <div class="parts">
+                        <ul>
+                            <li><a href=""><img src="/static/images/wix/petshop/take_care_1.jpg" alt="" /></a></li>
+                            <li><a href=""><img src="/static/images/wix/petshop/take_care_2.jpg" alt="" /></a></li>
+                            <li><a href=""><img src="/static/images/wix/petshop/take_care_3.jpg" alt="" /></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="stay-with-pets">
+                    <ul class="parts">
+                        <li>
+                            <img src="/static/images/wix/petshop/stay_1.jpg" alt="" />
+                            <div>
+                                <p class="title">Friendly Pets</p>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adepiscing elit, sed diam nonummy nib. <a href="">Read More</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="/static/images/wix/petshop/stay_2.jpg" alt="" />
+                            <div>
+                                <p class="title">How dangerous are they</p>
+                                <p>Lorem ipsum dolor sit amet, cons ectetuer adepis cing, sed diam euis. <a href="">Read More</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="/static/images/wix/petshop/stay_3.jpg" alt="" />
+                            <div>
+                                <p class="title">Keep them healthy</p>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adepiscing elit, sed diam nonu mmy. <a href="">Read More</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="/static/images/wix/petshop/stay_4.jpg" alt="" />
+                            <div>
+                                <p class="title">Love...love...love...pets</p>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adepiscing elit, sed diameusim. <a href="">Read More</a></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <p class="copyright">&copy; 2011 Petshop. All Rights Reserved</p>
+            </div>
+        {% endblock %}
+    </body>
+</html>
