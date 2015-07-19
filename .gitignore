@@ -47,5 +47,8 @@ migrations/
 .idea/
 psd/
 
+# env
+env/
+
 # blog special setting
 config.py

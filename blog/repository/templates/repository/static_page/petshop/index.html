@@ -1,0 +1,133 @@
+{% extends 'repository/static_page/petshop/base.html' %}
+
+{% load staticfiles %}
+
+{% block page_main %}
+    <!-- 主banner图，使用背景，始终居中显示 -->
+    <div class="main-banner" style="background-image:url('{% static "repository/static_page/petshop/banner.jpg" %}')"></div>
+    <div class="main-wrapper">
+        <div class="main recommendation">
+            <ul>
+                <li>
+                <a href="#"><img src="{% static "repository/static_page/petshop/recommendation_1.jpg" %}" alt="" /></a>
+                    <div>
+                        <h3 class="title">What they need</h3>
+                        <p>Mirum est notare quam littera gothica, quam nunc putamus parum clara m, ant epo suerit li tterar. <a href="#">View all</a></p>
+                    </div>
+                </li>
+                <li>
+                <a href="#"><img src="{% static "repository/static_page/petshop/recommendation_2.jpg" %}" alt="" /></a>
+                    <div>
+                        <h3 class="title">Something good</h3>
+                        <p>Gothica, quam nun c putamus parum claram, anteposuerit litterarum formas humani tatis per seacula. <a href="#">View all</a></p>
+                    </div>
+                </li>
+                <li>
+                    <a href="#"><img src="{% static "repository/static_page/petshop/recommendation_3.jpg" %}" alt="" /></a>
+                    <div>
+                        <h3 class="title">Kinds of Fish</h3>
+                        <p>Quam nunc putamus parum claram, antep osuerit litter arum formas humanitatis per seacula quarta. <a href="#">View all</a></p>
+                    </div>
+                </li>
+                <li>
+                <a href="#"><img src="{% static "repository/static_page/petshop/recommendation_4.jpg" %}" alt="" /></a>
+                    <div>
+                        <h3 class="title">Fun birds</h3>
+                        <p>Mirum est notare quam littera gothica , quam nunc putamus parum claram, anteposuerit. <a href="#">View all</a></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="side search-and-shopping">
+            <div class="search">
+                <form>
+                    <div>
+                        <label for="keywords"></label>
+                        <input id="keywords" name="keywords" type="text" placeholder="Find" value="" />
+                        <input id="submit" type="submit" value="Search" />
+                    </div>
+                    <input type="radio" id="search-artical" name="search_type" value="articals" />
+                    <label for="search-artical">Articals</label>
+                    <input class="second" type="radio" id="search-product" name="search_type" value="articals" />
+                    <label for="search-product">PetMart Products</label>
+                </form>
+            </div>
+            <div class="shopping-guide">
+                <div class="label">
+                    <h4>Shopping Guides</h4>
+                    <h4 class="current">Discounted Items</h4>
+                </div>
+                <div class="content">
+                    <ul class="shopping hidden">
+                        <li>
+                            <p><a href="#">Pet Accesories</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Bath Essentials</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Pet Food</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Pet Vitamins</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Pet Needs</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Pet Toy and Treats</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Pet Supplies</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Pet Emergency Kit</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                    </ul>
+                    <ul class="discount">
+                        <li>
+                            <p><a href="#">Pet Accesories</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Bath Essentials</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Pet Food</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Pet Vitamins</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Pet Needs</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Pet Toy and Treats</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Pet Supplies</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                        <li>
+                            <p><a href="#">Pet Emergency Kit</a></p>
+                            <a href="#">see all</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -64,7 +64,10 @@ class RepositoryTemplateContent(BaseView):
         if not static_pages:
             raise Http404("static page not found")
         static_page = static_pages[0]
-        return self.render(request, static_page.template)
+        return self.render(
+            request, static_page.template,
+            data={"stuff": stuff, 'static_page': static_page}
+        )
 
 
 class RepositoryExercises(BaseView):

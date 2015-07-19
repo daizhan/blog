@@ -57,7 +57,7 @@ a{
 
 /* header */
 .header{
-    background: url('/static/images/wix/petshop/header-bg.gif') repeat-x top left;
+    background: url('/static/repository/static_page/petshop/header-bg.gif') repeat-x top left;
     height: 114px;
     width: 100%;
     min-width: 960px;
@@ -88,7 +88,7 @@ a{
     float: left;
 }
 .nav .current{
-    background: url('/static/images/wix/petshop/menu-hover.gif') no-repeat right bottom;
+    background: url('/static/repository/static_page/petshop/menu-hover.gif') no-repeat right bottom;
 }
 .nav a{
     font-size: 14px;
@@ -96,7 +96,7 @@ a{
     font-weight: bold;
     color: #000;
     text-decoration: none;
-    background: url('/static/images/wix/petshop/menu-separator.gif') no-repeat right bottom;
+    background: url('/static/repository/static_page/petshop/menu-separator.gif') no-repeat right bottom;
 }
 .nav a:hover{
     color: #fff;
@@ -217,7 +217,7 @@ a{
     width: 140px;
     line-height: 30px;
     text-align: center;
-    background: url('/static/images/wix/petshop/menu.gif') no-repeat 0 0; 
+    background: url('/static/repository/static_page/petshop/menu.gif') no-repeat 0 0; 
     float: left;
     cursor: pointer;
 }
@@ -355,7 +355,7 @@ a{
     display: block;
     width: 300px;
     height: 790px;
-    background: url('/static/images/wix/petshop/discount.jpg') no-repeat;
+    background: url('/static/repository/static_page/petshop/discount.jpg') no-repeat;
 }
 /* mart end */
 
@@ -391,7 +391,7 @@ a{
     margin-bottom: 5px;
 }
 .about-us .recommendation li{
-    background: url('/static/images/wix/petshop/shadow.gif') no-repeat bottom center;
+    background: url('/static/repository/static_page/petshop/shadow.gif') no-repeat bottom center;
     margin-bottom: 30px;
     padding-bottom: 15px;
 }
@@ -417,7 +417,7 @@ a{
 }
 .blog .main li{
     position: relative; 
-    background: url('/static/images/wix/petshop/bg-blog-heading.gif') no-repeat top left;
+    background: url('/static/repository/static_page/petshop/bg-blog-heading.gif') no-repeat top left;
     padding-left: 18px; 
     padding-top: 20px;
     color: #897e75;
@@ -465,13 +465,13 @@ a{
     background-position: center center;
 }
 .blog .main a.love{
-    background-image: url('/static/images/wix/petshop/icon-heart.gif');
+    background-image: url('/static/repository/static_page/petshop/icon-heart.gif');
 }
 .blog .main a.facebook{
-    background-image: url('/static/images/wix/petshop/icon-facebook.gif');
+    background-image: url('/static/repository/static_page/petshop/icon-facebook.gif');
 }
 .blog .main a.twitter{
-    background-image: url('/static/images/wix/petshop/icon-twitter.gif');
+    background-image: url('/static/repository/static_page/petshop/icon-twitter.gif');
 }
 .archives.wrapper{
     margin-top: 10px;
@@ -483,13 +483,13 @@ a{
     margin: 15px 0;
 }
 .archives .year-list li{
-    background: url('/static/images/wix/petshop/top-border-long.gif') no-repeat top left;
+    background: url('/static/repository/static_page/petshop/top-border-long.gif') no-repeat top left;
 }
 .archives .year-list li li{
     background: none;
 }
 .archives .year-list .year{
-    background: url('/static/images/wix/petshop/arrow-down.gif') no-repeat 200px center;
+    background: url('/static/repository/static_page/petshop/arrow-down.gif') no-repeat 200px center;
     font-size: 20px;
     color: #ff9600;
     height: 50px;
@@ -497,14 +497,14 @@ a{
     cursor: pointer;
 }
 .archives .year-list li.selected .year{
-    background-image: url('/static/images/wix/petshop/arrow-up.gif');
+    background-image: url('/static/repository/static_page/petshop/arrow-up.gif');
 }
 .archives .year-list li ul{
     display: none;
 }
 .archives .year-list li.selected ul{
     display: block;
-    background: url('/static/images/wix/petshop/top-border-long.gif') no-repeat left top;
+    background: url('/static/repository/static_page/petshop/top-border-long.gif') no-repeat left top;
     font-size: 18px;
     color: #ff9600;
     line-height: 1.4;
@@ -615,7 +615,7 @@ a{
     font-family: Arial; 
 }
 .follow-us ul li{
-    background: url('/static/images/wix/petshop/top-border-short.gif') no-repeat bottom left;
+    background: url('/static/repository/static_page/petshop/top-border-short.gif') no-repeat bottom left;
 }
 .follow-us a{
     display: block;
@@ -628,16 +628,16 @@ a{
     background-position: left center;
 }
 .follow-us a.facebook{
-    background-image: url('/static/images/wix/petshop/icon-facebook2.gif');
+    background-image: url('/static/repository/static_page/petshop/icon-facebook2.gif');
 }
 .follow-us a.subscribe{
-    background-image: url('/static/images/wix/petshop/icon-mail.gif');
+    background-image: url('/static/repository/static_page/petshop/icon-mail.gif');
 }
 .follow-us a.twitter{
-    background-image: url('/static/images/wix/petshop/icon-twitter2.gif');
+    background-image: url('/static/repository/static_page/petshop/icon-twitter2.gif');
 }
 .follow-us a.flicker{
-    background-image: url('/static/images/wix/petshop/icon-flicker.gif');
+    background-image: url('/static/repository/static_page/petshop/icon-flicker.gif');
 }
 .follow-us a:hover{
     opacity: 0.8;
