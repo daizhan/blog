@@ -6,6 +6,7 @@ import os
 import hashlib
 from datetime import datetime
 import time
+import random
 
 
 def set_upload_path(model_ins, filename):
@@ -58,3 +59,12 @@ get_online_time.short_description = "上线时间"
 def get_offline_time(model_ins):
     return get_record_time(model_ins.offline_time)
 get_offline_time.short_description = "下线时间"
+
+
+def set_default_slug(seed=None):
+    if seed is None:
+        seed = time.time() + random.random()
+    random.seed(seed)
+    return hashlib.md5(str(time.time() + random.random())).hexdigest()[:8];
+
+

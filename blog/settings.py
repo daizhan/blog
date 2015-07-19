@@ -45,7 +45,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'south',
     'blog.management',
     'blog.repository',
 )
@@ -158,13 +157,13 @@ LOGGING = {
             'delay': True,
         },
         'django_console':{
-            'level': 'DEBUG',
+            'level': 'INFO',
             'formatter': 'short',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
         },
         'console':{
-            'level': 'DEBUG',
+            'level': 'INFO',
             'formatter': 'long',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
@@ -173,7 +172,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['request', 'django_console'],
-            'level': 'DEBUG',
+            'level': 'INFO',
         },
         'django.request': {
             'handlers': ['mail_admins'],
@@ -182,7 +181,7 @@ LOGGING = {
         },
         'blog': {
             'handlers': ['save_to_file', 'console', 'mail_admins'],
-            'level': 'DEBUG',
+            'level': 'INFO',
         },
     }
 }

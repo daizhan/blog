@@ -33,3 +33,18 @@ class GenderType(Const):
     male = (2, "男")
     female = (3, "女")
 
+
+class StuffType(Const):
+
+    project = (1, "项目")
+    static_page = (2, "静态模板")
+    exercise = (3, "练习")
+
+
+class VerifyType(Const):
+
+    draft = (0, "草稿")
+    verifing = (1, "提交审核")
+    verify_success = (2, "审核通过")
+    verify_failed = (2, "审核失败")
+

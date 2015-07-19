@@ -1,0 +1,13 @@
+.static-page-footer{
+    text-align: center;
+    background-color: rgba(0,0,0,0.8);
+    height: 40px;
+    line-height: 40px;
+}
+.static-page-footer a{
+    color: #eee; 
+    text-decoration: none;
+}
+.static-page-footer a:hover{
+    text-decoration: underline;
+}

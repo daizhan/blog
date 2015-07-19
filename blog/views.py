@@ -8,9 +8,14 @@ from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from blog.utils.log import logger
 
 
+def index(reqeust, *args, **kwargs):
+    return render_to_response('index.html')
+
+
 def test(reqeust, *args, **kwargs):
     context = {'now_time': datetime.now()}
     return render_to_response('test.html', context)
+
 
 def wangkui(reqeust, *args, **kwargs):
     return render_to_response('wangkui.html')

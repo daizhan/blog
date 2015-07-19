@@ -17,15 +17,11 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', 'blog.views.test', name="test"),
-    url(r'^wangkui/$', 'blog.views.wangkui', name="wangkui"),
-    url(r'^wix/stunning/$', 'blog.views.wix_stunning', name="wix-stunning"),
-    url(r'^wix/petshop/index/$', 'blog.views.wix_petshop_index', name="wix-petshop-index"),
-    url(r'^wix/petshop/mart/$', 'blog.views.wix_petshop_mart', name="wix-petshop-mart"),
-    url(r'^wix/petshop/aboutus/$', 'blog.views.wix_petshop_aboutus', name="wix-petshop-aboutus"),
-    url(r'^wix/petshop/blog/$', 'blog.views.wix_petshop_blog', name="wix-petshop-blog"),
-    url(r'^wix/petshop/guide/$', 'blog.views.wix_petshop_guide', name="wix-petshop-guide"),
-    url(r'^wix/petshop/contact/$', 'blog.views.wix_petshop_contact', name="wix-petshop-contact"),
+    url(r'^$', 'blog.views.index', name="index"),
+
+    url(r'^repository/', include('blog.repository.urls')),
+
+    url(r'^test/$', 'blog.views.test', name="test"),
 )
 
 if DEBUG:
@@ -33,3 +29,7 @@ if DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
+handler400 = 'blog.base_handler.bad_request'
+handler403 = 'blog.base_handler.permission_denied'
+handler404 = 'blog.base_handler.page_not_found'
+handler500 = 'blog.base_handler.server_error'

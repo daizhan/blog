@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block base_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "repository/static_page/base.css" %}" />
+{% endblock base_css %}
+
+{% block body %}
+    <body>
+        {% block main %} {% endblock %}
+        {% block static_page_footer %}
+            <div class="static-page-footer">
+                <a href="{% url "disclaimer" %}" title="页面说明" target="_blank">本页面仅用于个人学习研究，无任何商业目的，如有侵权，请务必联系管理员</a>
+            </div>
+        {% endblock static_page_footer %}
+        {% block base_js %} {% endblock %}
+        {% block common_js %} {% endblock %}
+        {% block page_js %} {% endblock %}
+    </body>
+{% endblock %}
