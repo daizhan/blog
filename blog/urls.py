@@ -17,7 +17,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', 'blog.views.index', name="index"),
+    url(r'^$', 'blog.views.test', name="index"),
 
     url(r'^repository/', include('blog.repository.urls')),
 
