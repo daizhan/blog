@@ -3,6 +3,7 @@
     background-color: rgba(0,0,0,0.8);
     height: 40px;
     line-height: 40px;
+    font-size: 12px;
 }
 .static-page-footer a{
     color: #eee; 
@@ -10,4 +11,5 @@
 }
 .static-page-footer a:hover{
     text-decoration: underline;
+    color: #eee; 
 }
