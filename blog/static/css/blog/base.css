@@ -1,0 +1,73 @@
+html{
+    font: 10px/1.4 "微软雅黑","宋体", "Arail";
+    background-color: #f2f2f2; 
+    height: 100%;
+    width: 100%;
+}
+body{
+    max-width: 1080px;
+    min-width: 320px;
+    width: 100%;
+    height: 80%; 
+    margin: 0 auto;
+    position: relative;
+    top: 10%;
+    background-color: #ff5b82;
+}
+@media screen and (max-height: 980px) and (max-width: ){
+}
+@media screen and (max-width: 980px){
+    .global-aside{
+        display: none;
+    }
+}
+@media screen and (max-width: 750px){
+    .global-nav{
+        display: none;
+    }
+}
+.global-nav{
+    width: 5rem; 
+    float: left;
+    background-color: #123456;
+    height: 100%;
+    position: relative;
+}
+.global-nav div{
+    width: 100%;
+}
+.global-top-nav{
+    position: absolute;
+    top: 2rem;
+}
+.global-bottom-nav{
+    position: absolute;
+    bottom: 0;
+}
+.global-nav div a{
+    display: block;
+    width: 100%;
+    height: 4.5rem;
+    color: #fff;
+    text-align: center;
+    line-height: 4.5rem;
+    text-decoration: none;
+}
+.global-nav div a:hover{
+    background-color: #235632;
+}
+.global-body{
+    height: 100%;
+}
+.global-aside{
+    float: right;
+    width: 28rem;
+    height: 100%;
+    background-color: #455433;
+}
+.global-footer{
+    clear: both;
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 1rem 0;
+}
