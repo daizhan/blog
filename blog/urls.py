@@ -17,9 +17,11 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', 'blog.views.test', name="test"),
-    url(r'^wangkui/$', 'blog.views.wangkui', name="wangkui"),
-    url(r'^wix/stunning/$', 'blog.views.wix_stunning', name="wix-stunning"),
+    url(r'^$', 'blog.views.test', name="index"),
+
+    url(r'^repository/', include('blog.repository.urls')),
+
+    url(r'^test/$', 'blog.views.test', name="test"),
 )
 
 if DEBUG:
@@ -27,3 +29,7 @@ if DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
+handler400 = 'blog.base_handler.bad_request'
+handler403 = 'blog.base_handler.permission_denied'
+handler404 = 'blog.base_handler.page_not_found'
+handler500 = 'blog.base_handler.server_error'

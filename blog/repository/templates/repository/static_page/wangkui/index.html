@@ -1,0 +1,39 @@
+{% extends "repository/static_page/base.html" %}
+
+{% load staticfiles %}
+
+{% block page_css %}
+    <link href="{% static "repository/static_page/wangkui/style.css" %}" type="text/css" rel="stylesheet" />
+{% endblock page_css %}
+
+{% block main %}
+    <div class="header">
+        <div class="wrap">
+            <a class="logo" href="#" title="刑天科技">刑天科技</a>
+            <ul class="menu">
+                <li><a href="#"><span></span><strong>关于我们</strong><br /><small>About us</small></a></li>
+                <li class="selected"><a href="#"><span></span><strong>游戏产品</strong><br /><small>Game products</small></a></li>
+                <li><a href="#"><span></span><strong>招贤纳士</strong><br /><small>Recruitment</small></a></li>
+                <li><a href="#"><span></span><strong>商务合作</strong><br /><small>Cooperation</small></a></li>
+                <li><a href="#"><span></span><strong>联系我们</strong><br /><small>Contact us</small></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main">
+        <div class="wrap">
+            <img class="actor" src="{% static "repository/static_page/wangkui/12.png" %}" alt="" />
+            <div class="intro">
+                <h1>刑天游戏 Punishment Day</h1>
+                <p>深圳市刑天科技开发有限公司创立于2013年1月，是一家致力于研发各类型高品质网络游戏研发商。 从新奇的创意到实用的科技，探索的动力永无止境，持续不断地为用户提供最好最前沿的游戏精品一直是我们的动力所在。刑天人将“ 创新，协作，真诚，分享”作为公司核心文化价值观。我们尊重每一位人才的价 值，信仰“以人为本，科技创新”的关怀理念。 年轻充满创作激情，配合创新意识的氛围，相信瞩目的成绩指日可待。</p>
+                <ul>
+                    <li class="first"><div class="top"></div><div class="bottom"></div><p>刑天科技</p></li>
+                    <li class="second"><div class="top"></div><div class="bottom"></div><p>手机游戏</p></li>
+                    <li class="third"><div class="top"></div><div class="bottom"></div><p>网页游戏</p></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>测试页面，仅用于学习</p>
+    </div>
+{% endblock main %}

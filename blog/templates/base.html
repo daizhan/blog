@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block title %}
+            <title>{{ seo.title }} </title>
+        {% endblock %}
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        {% block meta_keywords %}
+            <meta name="keywords" content="{{ seo.keywords }}" />
+        {% endblock %}
+        {% block meta_description %}
+            <meta name="description" content="{{ seo.description }}" />
+        {% endblock %}
+        {% block meta_viewport %}
+            <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        {% endblock %}
+        {% block base_css %} {% endblock %}
+        {% block common_css %} {% endblock %}
+        {% block page_css %} {% endblock %}
+        {% block head_js %} {% endblock %}
+        {% block baidu_tongji %}
+            {% if not DEBUG %}
+                <script>
+                    var _hmt = _hmt || [];
+                    (function() {
+                      var hm = document.createElement("script");
+                      hm.src = "//hm.baidu.com/hm.js?4b68ba6e4e44904735db3e0f17734a5d";
+                      var s = document.getElementsByTagName("script")[0]; 
+                      s.parentNode.insertBefore(hm, s);
+                    })();
+                </script>
+            {% endif %}
+        {% endblock baidu_tongji %}
+    </head>
+    {% block body %}
+        <body>
+            {% block main %} {% endblock %}
+            {% block base_js %} {% endblock %}
+            {% block common_js %} {% endblock %}
+            {% block page_js %} {% endblock %}
+        </body>
+    {% endblock %}
+</html>
