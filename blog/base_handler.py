@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import View
 
+from blog.settings import DEBUG
+
 
 class BaseView(View):
 
@@ -15,7 +17,9 @@ class BaseView(View):
         }
 
     def get_common_data(self, request):
-        data = {}
+        data = {
+            "DEBUG": DEBUG
+        }
         data['seo'] = self.get_seo_data(request)
         return data
 
