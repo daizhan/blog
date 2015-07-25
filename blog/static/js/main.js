@@ -180,11 +180,13 @@ M.format = {
     printf: function(format, str){
         var nextIndex = 0,
             res = "",
-            argsLen = arguments.length; 
+            argsLen = arguments.length,
+            formatLen = format.length,
+            i; 
         if (arguments.length > 1){
-            nextIndex = 1
+            nextIndex = 1;
         }
-        for (var i=0, len=format.length; i < len; i ++){
+        for (i=0; i < formatLen; i ++){
             if (format.charAt(i) != '%'){
                 res += format.charAt(i);
             }else{
@@ -211,7 +213,7 @@ M.format = {
         if (argsLen > 1 && nextIndex < argsLen){
             throw new TypeError("not all arguments converted during string formating");
         }
-        return res
+        return res;
     }
 };
 
@@ -235,7 +237,7 @@ M.urlUtility = {
         }
         return args;
     }
-}
+};
 
 // ***** common module *******
 
