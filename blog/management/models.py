@@ -31,3 +31,23 @@ class User(models.Model):
 
     def __unicode__(self):
         return self.nickname
+
+
+class SEORecord(models.Model):
+    url_name = models.CharField("url名称", max_length=50) 
+    values = models.CharField("url值", max_length=50, default="", blank=True) 
+    title = models.CharField("标题", max_length=100)
+    keywords = models.CharField("关键词", max_length=200, default="", blank=True)
+    description = models.TextField("描述", default="", blank=True)
+    status = models.PositiveSmallIntegerField(
+        "状态", default=StatusType.normal, choices=StatusType.attrs.items()
+    )
+    create_time = models.DateTimeField("创建时间", auto_now_add=True)
+    update_time = models.DateTimeField("更新时间", auto_now=True)
+
+    class Meta:
+        verbose_name = "SEO信息"
+        verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.title

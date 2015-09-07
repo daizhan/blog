@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding:utf-8 -*-
 
 """ all utility about models and admins """
 
@@ -7,6 +7,8 @@ import hashlib
 from datetime import datetime
 import time
 import random
+
+from django.core.urlresolvers import reverse
 
 
 def set_upload_path(model_ins, filename):
@@ -63,8 +65,29 @@ get_offline_time.short_description = "下线时间"
 
 def set_default_slug(seed=None):
     if seed is None:
-        seed = time.time() + random.random()
+        seed = time.time()+ random.random()
     random.seed(seed)
-    return hashlib.md5(str(time.time() + random.random())).hexdigest()[:8];
+    return hashlib.md5(str(time.time()+ random.random())).hexdigest()[:8];
 
 
+def generate_url(url_name, values):
+    """ 用于SEO模型，检查指定的url数据是否可以生成正确的链接 """
+    args = []
+    kwargs = {}
+    if values:
+        values = values.split(',')
+    for value in values:
+        if '=' in value:
+            index = value.index('=')
+            key = value[:index]
+            kwargs[key]= value[index+1:]
+        else:
+            args.append(value)
+    try:
+        if args:
+            url = reverse(url_name, args=args)
+        else:
+            url = reverse(url_name, kwargs=kwargs)
+    except:
+        url = ''
+    return url 

@@ -80,10 +80,12 @@ M.cookieUtil = {
         return cookieValue;
     },
     getAll: function(){
-        var cookies = document.cookie.split(';');
+        var cookies = document.cookie.split(';'),
             parts = null,
-            results = {};
-        for (var i = 0, len = cookies.length; i < len; i ++){
+            results = {},
+            cookiesLen = cookies.length,
+            i;
+        for (i = 0; i < cookiesLen; i ++){
             parts = cookies[i].trim().split('=');
             if (parts.length == 2){
                 results[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
@@ -99,8 +101,10 @@ M.cookieUtil = {
         var cookieValue = this.get(name),
             subCookies = cookieValue.split('&'),
             results = {},
-            parts = null;
-        for (var i = 0, len = subCookies.length; i < len; i ++) {
+            parts = null,
+            subCookiesLen = subCookies.length,
+            i;
+        for (i = 0; i < subCookieslen; i ++) {
             parts = subCookies[i].split('=');
             if (parts.length == 2){
                 results[parts[0]] = parts[1];
@@ -137,7 +141,7 @@ M.cookieUtil = {
         this.set(name, cookieValue, domain, path, expires, secure);
     },
     setSubCookie: function(name, newSubCookie, domain, path, expires, secure){
-        var subCookie = this.getAllSubCookie(name, subName),
+        var subCookie = this.getAllSubCookie(name),
             subName = '',
             subCookieParts = [],
             cookieValue='';
@@ -153,8 +157,10 @@ M.cookieUtil = {
         this.set(name, '', domain, path, new Date(0), secure);
     },
     unsetSubCookie: function(name, subNames, domain, path, expires, secure){
-        var subCookies = this.getAllSubCookie(name);
-        for (var i = 0, len = subNames.length; i < len; i ++){
+        var subCookies = this.getAllSubCookie(name),
+            subNameLen = subNames.length,
+            i;
+        for (i = 0; i < subNameLen; i ++){
             if (subNames[i] in subCookies){
                 delete subCookies[subNames[i]];
             }
@@ -174,11 +180,13 @@ M.format = {
     printf: function(format, str){
         var nextIndex = 0,
             res = "",
-            argsLen = arguments.length; 
+            argsLen = arguments.length,
+            formatLen = format.length,
+            i; 
         if (arguments.length > 1){
-            nextIndex = 1
+            nextIndex = 1;
         }
-        for (var i=0, len=format.length; i < len; i ++){
+        for (i=0; i < formatLen; i ++){
             if (format.charAt(i) != '%'){
                 res += format.charAt(i);
             }else{
@@ -205,7 +213,29 @@ M.format = {
         if (argsLen > 1 && nextIndex < argsLen){
             throw new TypeError("not all arguments converted during string formating");
         }
-        return res
+        return res;
+    }
+};
+
+// URL实用函数
+M.urlUtility = {
+    // 解析查询参数
+    getQueryStringArgs: function(){
+        var search = location.search,
+            queryString = search.length > 1 ? search.substring(1) : '',
+            queryAarry = queryString.length ? queryString.split('&') : [],
+            argLen = queryAarry.length,
+            args = {},
+            key, value, i, query;
+        for (i = 0; i < argLen; i ++){
+            query = queryAarry[i].split('=');
+            key = decodeURIComponent(query[0]);
+            value = decodeURIComponent(query[1]);
+            if (key.length){
+                args[key] = value;
+            }
+        }
+        return args;
     }
 };
 
