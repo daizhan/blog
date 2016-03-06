@@ -18,10 +18,12 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', 'blog.views.test', name="index"),
+    url(r'^resume/?$', 'blog.views.resume', name="resume"),
 
     url(r'^repository/', include('blog.repository.urls')),
 
     url(r'^test/$', 'blog.views.test', name="test"),
+    url(r'^weixin/token_check/$', 'blog.views.weixin_token_check', name="weixin_token_check"),
 )
 
 if DEBUG:
