@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from blog.repository.views.index import (
     RepositoryIndex, RepositoryStuff,
     RepositoryProjects, RepositoryExercises, RepositoryTemplates,
@@ -8,7 +8,7 @@ from blog.repository.views.index import (
     Disclaimer
 )
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Examples:
     # url(r'^$', 'blog.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
@@ -22,4 +22,4 @@ urlpatterns = patterns('',
     url(r'^exercises/$', RepositoryExercises.as_view(), name="repository_exercises"),
     url(r'^exercise/([0-9a-z]{8})/?$', RepositoryExerciseContent.as_view(), name="repository_exercise_content"),
     url(r'^disclaimer/?$', Disclaimer.as_view(), name="disclaimer"),
-)
+]

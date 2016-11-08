@@ -3,7 +3,7 @@
 import os.path as osp
 
 from django import forms
-from blog.settings import TEMPLATE_DIRS
+from blog.settings import TEMPLATES
 
 
 class StaticPageAdminForm(forms.ModelForm):
@@ -14,7 +14,7 @@ class StaticPageAdminForm(forms.ModelForm):
         if not template:
             raise forms.ValidationError("请输入模板路径")
         else:
-            for template_dir in TEMPLATE_DIRS:
+            for template_dir in TEMPLATES[0]['DIRS']:
                 if osp.isfile(osp.join(template_dir, template)):
                     break
             else:

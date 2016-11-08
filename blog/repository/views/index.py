@@ -18,8 +18,14 @@ class Disclaimer(BaseView):
 
 class RepositoryIndex(BaseView):
 
-    def get(self, request, *args, **kwargs):
-        return HttpResponseRedirect(reverse('index'))
+    def get(self, request):
+        stuff_list = Stuff.objects.filter(
+            status=StatusType.normal, verify=VerifyType.verify_success
+        )
+        return self.render(
+            request, "repository/index.html",
+            data={"stuff_list": stuff_list}
+        )
 
 
 class RepositoryStuff(BaseView):
@@ -36,8 +42,15 @@ class RepositoryProjects(BaseView):
 
 class RepositoryTemplates(BaseView):
 
-    def get(self, request, *args, **kwargs):
-        return HttpResponseRedirect(reverse('index'))
+    def get(self, request):
+        stuff_list = Stuff.objects.filter(
+            type=StuffType.static_page, status=StatusType.normal,
+            verify=VerifyType.verify_success
+        )
+        return self.render(
+            request, "repository/static_page/list.html",
+            data={"stuff_list": stuff_list}
+        )
 
 
 class RepositoryTemplateContent(BaseView):

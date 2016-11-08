@@ -49,6 +49,9 @@ psd/
 
 # env
 env/
+log/
+media/
+static/
 
 # blog special setting
 config.py

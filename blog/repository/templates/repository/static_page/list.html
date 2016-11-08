@@ -1,0 +1,22 @@
+{% extends "repository/static_page/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+    <title>静态页面货架</title>
+{% endblock %}
+
+{% block main %}
+    <h1>静态页面货架</h1>
+    {% if stuff_list %}
+        <ul>
+            {% for stuff in stuff_list %}
+                <li><a href="{% url "repository_template_index" stuff.slug %}">{{ stuff.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>这里一片空白</p>
+    {% endif %}
+{% endblock %}
+
+{% block static_page_footer %} {% endblock static_page_footer %}
