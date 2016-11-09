@@ -14,7 +14,13 @@
         {% block meta_viewport %}
             <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
         {% endblock %}
-        {% block base_css %} {% endblock %}
+
+        {% load staticfiles %}
+
+        {% block base_css %}
+            <link rel="stylesheet" href="{% static "css/blog/base.css" %}" />
+        {% endblock %}
+
         {% block common_css %} {% endblock %}
         {% block page_css %} {% endblock %}
         {% block head_js %} {% endblock %}
@@ -34,7 +40,33 @@
     </head>
     {% block body %}
         <body>
+            {% block header %}
+                <header class="header">
+                    <section class="header-wrapper">
+                        <div class="logo fl">
+                            <a href="{% url "index" %}">夹克来了</a>
+                        </div>
+                        <nav class="nav fl">
+                            <ul>
+                                <li><a class="selected" href="">文章</a></li>
+                                <li><a href="">项目</a></li>
+                                <li><a href="">笔记</a></li>
+                                <li><a href="" class="demo">Demo</a></li>
+                                <li><a href="">夹克</a></li>
+                            </ul>
+                        </nav>
+                        <div class="right-shortcut fr">
+                            <from class="search">
+                                <label for="keywords">搜索</label>
+                                <input type="text" id="keywords" name="keywords" placeholder="有求必应">
+                            </from>
+                            <a class="pull-advice" href="">有话要说</a>
+                        </div>
+                    </section>
+                </header>
+            {% endblock %}
             {% block main %} {% endblock %}
+            {% block footer %} {% endblock %}
             {% block base_js %} {% endblock %}
             {% block common_js %} {% endblock %}
             {% block page_js %} {% endblock %}

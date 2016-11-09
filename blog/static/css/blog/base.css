@@ -1,73 +1,203 @@
-html{
-    font: 10px/1.4 "微软雅黑","宋体", "Arail";
-    background-color: #f2f2f2; 
-    height: 100%;
-    width: 100%;
+/* reset start */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul {
+    margin: 0;
+    padding: 0;
 }
-body{
-    max-width: 1080px;
-    min-width: 320px;
-    width: 100%;
-    height: 80%; 
-    margin: 0 auto;
-    position: relative;
-    top: 10%;
-    background-color: #ff5b82;
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","WenQuanYi Micro Hei","Microsoft Yahei",sans-serif;
 }
-@media screen and (max-height: 980px) and (max-width: ){
+
+ul {
+    list-style: none;
 }
-@media screen and (max-width: 980px){
-    .global-aside{
-        display: none;
-    }
-}
-@media screen and (max-width: 750px){
-    .global-nav{
-        display: none;
-    }
-}
-.global-nav{
-    width: 5rem; 
-    float: left;
-    background-color: #123456;
-    height: 100%;
-    position: relative;
-}
-.global-nav div{
-    width: 100%;
-}
-.global-top-nav{
-    position: absolute;
-    top: 2rem;
-}
-.global-bottom-nav{
-    position: absolute;
-    bottom: 0;
-}
-.global-nav div a{
-    display: block;
-    width: 100%;
-    height: 4.5rem;
-    color: #fff;
-    text-align: center;
-    line-height: 4.5rem;
+
+a {
     text-decoration: none;
 }
-.global-nav div a:hover{
-    background-color: #235632;
+
+/* reset end */
+
+/* common style start */
+.fl {
+    float: left;
 }
-.global-body{
-    height: 100%;
-}
-.global-aside{
+
+.fr {
     float: right;
-    width: 28rem;
-    height: 100%;
-    background-color: #455433;
 }
-.global-footer{
-    clear: both;
-    font-size: 1.4rem;
+
+/* commoen style end */
+
+/* header start */
+header {
+    height: 40px;
+    width: 100%;
+    background-color: #373277;
+    padding: 10px 0;
+    position: relative;
+}
+
+header:after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-width: 30px;
+    border-style: solid;
+    border-color: #58973e transparent transparent #58973e;
+}
+header:before {
+    content: "beta";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 30px;
     text-align: center;
-    padding: 1rem 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transform: rotate(-45deg);
+    z-index: 2;
 }
+
+.header-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 320px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.header-wrapper > * {
+    height: inherit;
+}
+
+.logo a{
+    color: #fff;
+    height: inherit;
+    font-size: 20px;
+    line-height: 2;
+    position: relative;
+    display: block;
+    padding-left: 45px;
+    letter-spacing: 2px;
+}
+
+.logo a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    display: block;
+    border-style: solid;
+    border-width: 15px;
+    border-color: #f5f5f5 #58973e #23527c #000;
+    top: 5px;
+    left: 5px;
+}
+
+.nav {
+    margin-left: 20px;
+}
+
+.nav ul {
+    float: left;
+    height: inherit;
+}
+
+.nav li {
+    float: left;
+    margin: 0 10px;
+}
+
+.nav li a {
+    color: #9e9e9e;
+    font-size: 16px;
+    line-height: 40px;
+    letter-spacing: 2px;
+}
+
+.nav li a.demo {
+    letter-spacing: 1px;
+}
+
+.nav li a:hover {
+    color: #fff;
+}
+
+.nav li a.selected {
+    color: #fff;
+}
+
+.right-shortcut > * {
+    height: inherit;
+    float: left;
+}
+
+.search {
+    width: 300px;
+    background-color: hsla(0,0%,100%,.18);
+}
+
+.search > * {
+    display: block;
+    float: left;
+    height: inherit;
+}
+
+.search label {
+    width: 40px;
+    background: url(../../images/header/search.svg) no-repeat center center;
+    background-size: 20px 20px;
+    text-indent: -10000px;
+}
+
+.search input {
+    border: 0 none;
+    width: 240px;
+    padding: 10px 10px 10px 0;
+    font-size: 16px;
+    color: #fff;
+    height: 20px;
+    background-color: transparent;
+    outline: none;
+    font-family: inherit;
+}
+.search input::-ms-input-placeholder {
+    color: #9d9d9d;
+}
+.search input::-webkit-input-placeholder {
+    color: #9d9d9d;
+}
+.search input::-moz-input-placeholder {
+    color: #9d9d9d;
+}
+.search input:-moz-input-placeholder {
+    color: #9d9d9d;
+}
+
+.pull-advice {
+    display: block;
+    padding: 0 10px;
+    color: #fff;
+    background-color: #58973e;
+    font-size: 16px;
+    line-height: 40px;
+}
+
+/* header end */
