@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+    <title>事故概括</title>
+{% endblock %}
+
+{% block base_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "repository/static_page/base.css" %}" />
+{% endblock base_css %}
+
+{% block page_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "repository/static_page/depth/main.css" %}" />
+{% endblock %}
+
+{% block body %}
+    <body>
+        {% block main %}
+            <div id="svg-content"></div>
+            <div class="zoom">
+                <button class="zoom-out">-</button>
+                <button class="zoom-in">+</button>
+            </div>
+        {% endblock %}
+        {% block page_js %}
+            <script src="{% static "/repository/static_page/depth/jquery.min.js" %}"></script>
+            <script src="{% static "/repository/static_page/depth/svg.min.js" %}"></script>
+            <script src="{% static "/repository/static_page/depth/main.js" %}"></script>
+            <script>
+                var data = {
+                    container: {
+                        title: "事故概括",
+                        x: 60,
+                        y: 60,
+                        event: {
+                            rawInfo: {
+                                x: 170,
+                                y: 334,
+                                summary: "This report offered the most specific and accurate description of the problems.",
+                                time: "2016.10.20 16.45",
+                                action: "Transcending established national boundaries or spheres."
+                            },
+                            duration: {
+                                x: 170,
+                                y: 1262,
+                                value: 300
+                            },
+                            progress: {
+                                x: 2346-435,
+                                y: 876-435,
+                                value: 92.5
+                            }
+                        }
+                    }
+                };
+                var draw = new D("svg-content", 3150, 1772, "#001727");
+                if (data.container) {
+                    draw.addContainer(draw.container, data.container);
+                    if (data.container.event) {
+                        draw.addEventSummary(draw.container, data.container.event);
+                    }
+                }
+                draw.render();
+            </script>
+        {% endblock %}
+    </body>
+{% endblock %}

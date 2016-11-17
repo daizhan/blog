@@ -1,0 +1,699 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+    <title>客户网络健康度</title>
+{% endblock %}
+
+{% block base_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "repository/static_page/base.css" %}" />
+{% endblock base_css %}
+
+{% block page_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "repository/static_page/depth/main.css" %}" />
+{% endblock %}
+
+{% block body %}
+    {% block main %}
+        <div id="svg-content"></div>
+        <div class="zoom">
+            <button class="zoom-out">-</button>
+            <button class="zoom-in">+</button>
+        </div>
+    {% endblock %}
+    {% block page_js %}
+        <script src="{% static "/repository/static_page/depth/jquery.min.js" %}"></script>
+        <script src="{% static "/repository/static_page/depth/svg.min.js" %}"></script>
+        <script src="{% static "/repository/static_page/depth/main.js" %}"></script>
+        <script>
+            (function(global){
+                var data = {
+                    style: {
+                        backgroundColor: "#152843",
+                        width: 1920,
+                        height: 1080,
+                        paddingLeft: 54,
+                        paddingTop: 120,
+                        fontFamily: '"Microsoft YaHei",Arial,sans-serif'
+                    },
+                    tab: {
+                        style: {
+                            height: 88,
+                            backgroundColor: "#142f4b",
+                            padding: 12,
+                        },
+                        items: [
+                            {
+                                icon: "{% static "/repository/static_page/depth/1.svg" %}",
+                                title: "导入数据"
+                            },
+                            {
+                                icon: "{% static "/repository/static_page/depth/2.svg" %}",
+                                title: "选择数据"
+                            },
+                            {
+                                icon: "{% static "/repository/static_page/depth/3.svg" %}",
+                                title: "评估分析"
+                            }
+                        ]
+                    },
+                    module: {
+                        score: 77,
+                        level: "normal",
+                        style: {
+                            subTitleColor: "#9badc6",
+                            lineWidth: 4,
+                            centralCircleLineWidth: 10,
+                            centralCircleGap: 20,
+                            centralCircleRadius: 145,
+                            width: 110,
+                            rectWidth: 370,
+                            rectHeight: 145,
+                            circleRadius: 55,
+                            circleInnerStroke: 8,
+                            circleOuterStoke: 4,
+                            circleStrokeGap: 10,
+                            connectorCircleRadius: 7
+                        },
+                        levels: {
+                            bad: {
+                                color: "#bb2e27"
+                            },
+                            normal: {
+                                color: "#fdab00"
+                            },
+                            good: {
+                                color: "#017ebb"
+                            }
+                        },
+                        items: [
+                            {
+                                title: "运维能力",
+                                icon: "{% static "/repository/static_page/depth/9.svg" %}",
+                                level: "good",
+                                score: 96,
+                                result: "良好"
+                            },
+                            {
+                                title: "网络演进能力",
+                                icon: "{% static "/repository/static_page/depth/8.svg" %}",
+                                level: "good",
+                                score: 96,
+                                result: "良好"
+                            },
+                            {
+                                title: "应急能力",
+                                icon: "{% static "/repository/static_page/depth/7.svg" %}",
+                                level: "good",
+                                score: 96,
+                                result: "良好"
+                            },
+                            {
+                                title: "抗冲击能力",
+                                icon: "{% static "/repository/static_page/depth/6.svg" %}",
+                                level: "bad",
+                                score: 38,
+                                result: "较差"
+                            },
+                            {
+                                title: "资源容量",
+                                icon: "{% static "/repository/static_page/depth/5.svg" %}",
+                                level: "good",
+                                score: 96,
+                                result: "良好"
+                            },
+                            {
+                                title: "网络健康度",
+                                icon: "{% static "/repository/static_page/depth/4.svg" %}",
+                                level: "normal",
+                                score: 77,
+                                result: "一般"
+                            }
+                        ]
+                    }
+                };
+                var innerScale = (function(){
+                    var currentScale = 100;
+                    return function(scale){
+                        if (typeof scale !== "undefined") {
+                            currentScale = scale;
+                        }
+                        return currentScale;
+                    }
+                })();
+                var innerTranslate = (function(){
+                    var translateX = 0,
+                        translateY = 0;
+                    return function(x, y){
+                        if (typeof x !== "undefined") {
+                            translateX = x;
+                        }
+                        if (typeof y !== "undefined") {
+                            translateY = y;
+                        }
+                        return {
+                            x: translateX,
+                            y: translateY
+                        };
+                    }
+                })();
+                function initScale(container){
+                    var $zoomButton = $(".zoom button"),
+                        scales = [1, 2, 5, 10, 15, 25, 50, 75, 100, 110, 125, 150, 175, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+                    $zoomButton.on("click", function(event){
+                        var $target = $(event.target),
+                            currentScale = innerScale(),
+                            index = scales.indexOf(currentScale),
+                            scale = getInitScale();
+                        if ($target.hasClass("zoom-out")) {
+                            index = Math.max(0, index-1);
+                        } else {
+                            index = Math.min(scales.length-1, index+1);
+                        }
+                        currentScale = scales[index];
+                        innerScale(currentScale);
+                        container.transform({
+                            scaleX: scale * currentScale / 100,
+                            scaleY: scale * currentScale / 100
+                        });
+                    });
+                }
+                function initMove(container){
+                    $(document).on("wheel", function(event){
+                        var translate = getInitTranslate(),
+                            currentTranslate = innerTranslate();
+                        currentTranslate.x -= event.originalEvent.deltaX;
+                        currentTranslate.y -= event.originalEvent.deltaY;
+                        innerTranslate(currentTranslate.x, currentTranslate.y);
+                        container.transform({ x: translate.x + currentTranslate.x, y: translate.y + currentTranslate.y });
+                    });
+                }
+                function initResize(container){
+                    window.onresize = function(event){
+                        var scale = getInitScale(),
+                            size = getClientSize(),
+                            translate = getInitTranslate();
+                        container.parent().size(size.width, size.height);
+                        container.attr("transform", "translate(" + translate.x + "," + translate.y + ") scale(" + scale + ")");
+                        // reset inner state
+                        innerScale(100);
+                        innerTranslate(0, 0);
+                    }
+                }
+                function getClientSize(){
+                    return {
+                        width: $(document.body).width(),
+                        height: $(document.body).height()
+                    };
+                }
+                function getInitScale(){
+                    var size = getClientSize();
+                    return Math.min(size.width/data.style.width, size.height/data.style.height);
+                }
+                function getInitTranslate(){
+                    var size = getClientSize(),
+                        scale = getInitScale();
+                    return {
+                        x: (size.width - (data.style.width * scale)) / 2,
+                        // y: (size.height - (data.style.height * scale)) / 2
+                        y: 0
+                    };
+                }
+                function initSvg(){
+                    var size = getClientSize();
+                    var draw = SVG("svg-content").size(size.width, size.height);
+                    draw.style({"background-color": data.style.backgroundColor});
+                    var container = draw.group().addClass("container");
+                        scale = getInitScale(),
+                        translate = getInitTranslate();
+
+                    initPage(container);
+
+                    container.attr("transform", "translate(" + translate.x + "," + translate.y + ") scale(" + scale + ")");
+                    initScale(container);
+                    initMove(container);
+                    initResize(container);
+                }
+                function initTab(container){
+                    var tabLength = data.tab.items.length,
+                        startX = data.style.paddingLeft,
+                        startY = data.style.paddingTop,
+                        padding = data.tab.style.padding,
+                        totalWidth = data.style.width - (padding * (tabLength-1)) - (startX * 2),
+                        width = totalWidth / tabLength,
+                        height = data.tab.style.height,
+                        offsetX = Math.tan(30 * Math.PI / 180) * (height / 2),
+                        i, tab;
+                    var group = container.group(),
+                        path, d, text, img,
+                        gap = 20;
+                    for (i = 0; i < tabLength; i ++) {
+                        tab = data.tab.items[i];
+                        if (i === 0) {
+                            d = "M 0 0 " +
+                                "L " + width + " 0 " +
+                                "L " + (width+offsetX) + " " + (height/2) + " " +
+                                "L " + width + " " + height + " " +
+                                "L 0 " + " " + height + " " +
+                                "Z";
+                        } else if (i === tabLength-1) {
+                            d = "M " + ((width*i)+(padding*i)) + " 0 " +
+                                "L " + ((width*i)+(padding*i)+width) + " 0 " +
+                                "L " + ((width*i)+(padding*i)+width) + " " + height + " " +
+                                "L " + ((width*i)+(padding*i)) + " " + height + " " +
+                                "L " + ((width*i)+(padding*i)+offsetX) + " " + (height/2) + " " +
+                                "Z";
+                        } else {
+                            d = "M " + ((width*i)+(padding*i)) + " 0 " +
+                                "L " + ((width*i)+(padding*i)+width) + " 0 " +
+                                "L " + ((width*i)+(padding*i)+width+offsetX) + " " + (height/2) + " " +
+                                "L " + ((width*i)+(padding*i)+width) + " " + height + " " +
+                                "L " + ((width*i)+(padding*i)) + " " + height + " " +
+                                "L " + ((width*i)+(padding*i)+offsetX) + " " + (height/2) + " " +
+                                "Z";
+                        }
+                        path = group.path(d).style("fill", data.tab.style.backgroundColor);
+                        text = group.plain(tab.title).addClass("tab-title").style("visibility", "hidden");
+                        img = group.image().style("visibility", "hidden");
+                        img.node.onload = (function(img, text, index){
+                            return function(){
+                                var imgWidth = img.width(),
+                                    imgHeight = img.height(),
+                                    textWidth = text.node.getBoundingClientRect().width,
+                                    textHeight = text.node.getBoundingClientRect().height;
+                                img.attr({
+                                    x: (width+padding) * index + (width - textWidth - imgWidth - gap)/2,
+                                    y: (height - imgHeight)/2
+                                });
+                                text.attr({
+                                    x: parseFloat(img.attr("x")) + imgWidth + gap,
+                                    y: (height - textHeight)/2 + textHeight * 3/4
+                                });
+                                img.style("visibility", "visible");
+                                text.style("visibility", "visible");
+                            }
+                        })(img, text, i);
+                        img.load(tab.icon).loaded(function(loader){
+                            this.node.onload();
+                        });
+                    }
+                    group.transform({ x: startX, y: startY });
+                }
+                function initModule(container){
+                    function initCircle(container){
+                        var radius = data.module.style.centralCircleRadius,
+                            circleLineRadius = radius + data.module.style.centralCircleGap + data.module.style.centralCircleLineWidth/2,
+                            group = container.group().addClass("circle"),
+                            circle = group.circle(radius*2),
+                            level = data.module.levels[data.module.level],
+                            score, text, d;
+                        var scoreRect, textRect,
+                            arc = (360 * data.module.score / 100) * Math.PI / 180,
+                            textGap = 10,
+                            largeArc, offset;
+                        circle.attr({cx: origin.x, cy: origin.y, fill: level.color});
+                        if (data.module.score < 100) {
+                            offset = {
+                                x: circleLineRadius * Math.sin(arc),
+                                y: -circleLineRadius * Math.cos(arc)
+                            };
+                            if (data.module.score <= 50) {
+                                largeArc = 0;
+                            } else {
+                                largeArc = 1;
+                            }
+                            d = "M " + origin.x + " " + (origin.y-circleLineRadius) + " " +
+                                "A " + circleLineRadius + " " + circleLineRadius + " 0 " + largeArc + " 1 " + (origin.x+offset.x) + " " + (origin.y+offset.y);
+                            group.path(d).addClass("line").attr("stroke", level.color);
+                            var left = {
+                                    x: origin.x + radius * Math.sin(arc),
+                                    y: origin.y - radius * Math.cos(arc)
+                                },
+                                right = {
+                                    x: origin.x - radius * Math.sin(arc),
+                                    y: origin.y + radius * Math.cos(arc)
+                                };
+                            d = "M " + left.x + " " + left.y + " " +
+                                "Q " + (left.x+210) + " " + (left.y-100) + " " + right.x + " " + right.y + " " +
+                                "A " + radius + " " + radius + " 0 0 0 " + left.x + " " + left.y;
+                            group.path(d).style({ fill: "#6f5516", opacity: 0.5});
+                            d = "M " + left.x + " " + left.y + " " +
+                                "Q " + (left.x+190) + " " + (left.y-30) + " " + right.x + " " + right.y + " " +
+                                "A " + radius + " " + radius + " 0 0 0 " + left.x + " " + left.y;
+                            group.path(d).style({ fill: "#b77f0b", opacity: 0.5});
+                        } else {
+                            group.circle(2*circleRadius).addClass("line").attr({
+                                stroke: level.color,
+                                cx: origin.x,
+                                cy: origin.y
+                            });
+                        }
+                        score = group.plain(""+data.module.score).addClass("score");
+                        text = group.plain("score");
+                        scoreRect = score.node.getBoundingClientRect();
+                        textRect = text.node.getBoundingClientRect();
+                        score.attr({
+                            x: origin.x - scoreRect.width/2,
+                            y: origin.y - (scoreRect.height+textRect.height)/2 + scoreRect.height - textGap
+                        });
+                        text.attr({
+                            x: origin.x - textRect.width/2,
+                            y: parseFloat(score.attr("y")) + textRect.height + textGap
+                        });
+                    }
+                    function getLineEquation(x1, y1, x2, y2){
+                        var k, b;
+                        if (x1 === x2 || y1 === y2) {
+                            k = 0;
+                            b = 0;
+                        } else {
+                            k = (y1-y2) / (x1-x2);
+                            b = y1 - k*x1;
+                        }
+                        return { k: k, b: b };
+                    }
+                    function getQuadraticEquation(a, b, c){
+                        return {
+                            v1: (-b+Math.sqrt(b*b-4*a*c)) / (2*a),
+                            v2: (-b-Math.sqrt(b*b-4*a*c)) / (2*a)
+                        }
+                    }
+                    function getLineCircleIntersectPoint(lx1, ly1, lx2, ly2, cx, cy, r){
+                        var line = getLineEquation(lx1, ly1, lx2, ly2),
+                            a = line.k*line.k+1,
+                            b = 2*(line.k*line.b-line.k*cy-cx),
+                            c = cx*cx + line.b*line.b + cy*cy - 2*line.b*cy - r*r,
+                            x1, x2, resultX, resultY;
+                        if (line.k === 0) {
+                            if (lx1 === lx2) {
+                                resultY = getQuadraticEquation(1, -2*cy, cy*cy+(lx1-cx)*(lx1-cx)-r*r);
+                                return {
+                                    p1: {
+                                        x: lx1,
+                                        y: Math.max(resultY.v1, resultY.v2)
+                                    },
+                                    p2: {
+                                        x: lx2,
+                                        y: Math.min(resultY.v1, resultY.v2)
+                                    }
+                                }
+                            } else {
+                                resultX = getQuadraticEquation(1, -2*cx, cx*cx+(ly1-cy)*(ly1-cy)-r*r);
+                                return {
+                                    p1: {
+                                        x: Math.min(resultX.v1, resultY.v2),
+                                        y: ly1
+                                    },
+                                    p2: {
+                                        x: Math.max(resultX.v1, resultX.v2),
+                                        y: ly2
+                                    }
+                                }
+                            }
+                        }
+                        resultX = getQuadraticEquation(a, b, c);
+                        if (resultX.v1 === resultX.v2) {
+                            resultY = getQuadraticEquation(1, -2*cy, cy*cy+(resultX.v1-cx)*(resultX.v1-cx)-r*r);
+                            return {
+                                p1: {
+                                    x: resultX.v1,
+                                    y: Math.max(resultY.v1, resultY.v2)
+                                },
+                                p2: {
+                                    x: resultX.x2,
+                                    y: Math.min(resultY.v1, resultY.v2)
+                                }
+                            }
+                        } else {
+                            x1 = Math.min(resultX.v1, resultX.v2);
+                            x2 = Math.max(resultX.v1, resultX.v2);
+                            return {
+                                p1: {
+                                    x: x1,
+                                    y: line.k * x1 + line.b
+                                },
+                                p2: {
+                                    x: x2,
+                                    y: line.k * x2 + line.b
+                                }
+                            };
+                        }
+                    };
+                    function getPoint(index, deg, radius){
+                        var defaultValue = 100,
+                            gap = data.module.style.centralCircleGap,
+                            pointA1 = {
+                                x: origin.x + gap/2,
+                                y: origin.y
+                            }, degA = deg * index,
+                            pointB1 = {
+                                x: origin.x - gap/2,
+                                y: origin.y
+                            }, degB = deg * (index+1),
+                            pointA2, pointB2,
+                            intersectA1, intersectB1, intersectA2, intersectB2, intersect;
+                        if (degA === 0 || degA === 180) {
+                            pointA2 = {
+                                x: pointA1.x,
+                                y: defaultValue
+                            };
+                        } else {
+                            pointA2 = {
+                                x: origin.x,
+                                y: origin.y + (pointA1.x-origin.x)/Math.tan(degA*Math.PI/180)
+                            };
+                        }
+                        if (degB === 180 || degB === 360) {
+                            pointB2 = {
+                                x: pointB1.x,
+                                y: defaultValue
+                            };
+                        } else {
+                            pointB2 = {
+                                x: origin.x,
+                                y: origin.y + (pointB1.x-origin.x)/Math.tan(degB*Math.PI/180)
+                            };
+                        }
+                        intersectA1 = getLineCircleIntersectPoint(pointA1.x, pointA1.y, pointA2.x, pointA2.y, origin.x, origin.y, radius-data.module.style.width);
+                        intersectA2 = getLineCircleIntersectPoint(pointA1.x, pointA1.y, pointA2.x, pointA2.y, origin.x, origin.y, radius);
+                        intersectB1 = getLineCircleIntersectPoint(pointB1.x, pointB1.y, pointB2.x, pointB2.y, origin.x, origin.y, radius-data.module.style.width);
+                        intersectB2 = getLineCircleIntersectPoint(pointB1.x, pointB1.y, pointB2.x, pointB2.y, origin.x, origin.y, radius);
+                        if (degA < 180) {
+                            intersect = {
+                                p0: intersectA2.p2,
+                                p1: intersectA1.p2,
+                                p2: intersectB1.p2,
+                                p3: intersectB2.p2,
+                                p4: intersectA2.p2
+                            };
+                            if (degB === 180) {
+                                intersect.p2 = intersectB1.p1;
+                                intersect.p3 = intersectB2.p1;
+                            }
+                        } else {
+                            intersect = {
+                                p0: intersectA2.p1,
+                                p1: intersectA1.p1,
+                                p2: intersectB1.p1,
+                                p3: intersectB2.p1,
+                                p4: intersectA2.p1
+                            };
+                            if (degB === 360) {
+                                intersect.p2 = intersectB1.p2;
+                                intersect.p3 = intersectB2.p2;
+                            }
+                        }
+                        return intersect;
+                    }
+                    function initBranch(container, module, index, moduleLen){
+                        var radius = data.module.style.centralCircleRadius + data.module.style.centralCircleGap*2 + data.module.style.centralCircleLineWidth + data.module.style.width,
+                            deg = 360 / moduleLen,
+                            level = data.module.levels[module.level],
+                            offsetStart, offsetEnd, startArc, endArc;
+                        var group, path, d, img,
+                            intersect = getPoint(index, deg, radius);
+                        group = container.group().addClass("module");
+                        d = "M " + intersect.p0.x + " " + intersect.p0.y + " " +
+                            "L " + intersect.p1.x + " " + intersect.p1.y + " " +
+                            "A " + (radius-data.module.style.width) + " " + (radius-data.module.style.width) + " 0 0 1 " + intersect.p2.x + " " + intersect.p2.y + " " +
+                            "L " + intersect.p3.x + " " + intersect.p3.y + " " +
+                            "A " + radius + " " + radius + " 0 0 0 " + intersect.p4.x + " " + intersect.p4.y + " " +
+                            "Z";
+                        path = group.path(d).style({ "fill": level.color });
+                        // if (index !== 0){
+                        //     group.path(
+                        //         "M " + intersect.p0.x + " " + intersect.p0.y + " " + "L " + intersect.p1.x + " " + intersect.p1.y
+                        //     ).style({"stroke": data.style.backgroundColor, "stroke-width": data.module.style.centralCircleGap});
+                        // }
+                        img = group.image().style("visibility", "hidden");
+                        img.node.onload = (function(img, radius, index, deg, origin){
+                            return function(){
+                                var imgWidth = img.width(),
+                                    imgHeight = img.height(),
+                                    middleDeg = (deg*index) + deg/2,
+                                    offset = {
+                                        x: origin.x + radius * Math.sin(middleDeg*Math.PI/180),
+                                        y: origin.y - radius * Math.cos(middleDeg*Math.PI/180)
+                                    };
+                                img.attr({
+                                    x: offset.x - imgWidth/2,
+                                    y: offset.y - imgHeight/2
+                                });
+                                img.style("visibility", "visible");
+                            }
+                        })(img, radius-data.module.style.width/2, index, deg, origin);
+                        img.load(module.icon).loaded(function(loader){
+                            this.node.onload();
+                        });
+                        group.path(
+                            "M " + origin.x + " " + (origin.y-radius) + " " + "L " + origin.x + " " + (origin.y+radius)
+                        ).style({"stroke": data.style.backgroundColor, "stroke-width": data.module.style.centralCircleGap}).transform({
+                            rotation: 60*index
+                        });
+                        initDesc(container, module, index, moduleLen);
+                    }
+                    function initDesc(container, module, index, moduleLen){
+                        var radius = data.module.style.centralCircleRadius + data.module.style.centralCircleGap*2 + data.module.style.centralCircleLineWidth + data.module.style.width,
+                            deg = 360 / moduleLen,
+                            middleDeg = (deg*index) + deg/2,
+                            gap = data.module.style.centralCircleGap,
+                            level = data.module.levels[module.level],
+                            offset = {
+                                x: origin.x + (radius+gap) * Math.sin(middleDeg*Math.PI/180),
+                                y: origin.y - (radius+gap) * Math.cos(middleDeg*Math.PI/180)
+                            }, direction = 1;
+                        var group = container.group().addClass("desc"),
+                            d;
+                        if (middleDeg > 180) {
+                            direction = -1;
+                        }
+            
+                        gap = direction * (data.module.style.lineWidth/2 + data.module.style.connectorCircleRadius);
+                        startX = offset.x + gap;
+                        group.circle(data.module.style.connectorCircleRadius*2).attr({
+                            cx: startX,
+                            cy: offset.y
+                        }).addClass("connector").style({
+                            "stroke": "#017ebb",
+                            "stroke-width": data.module.style.lineWidth,
+                            "fill": "transparent"
+                        });
+                        if (index === 1 || index === 4) {
+                            connectorLength = 120 * direction;
+                        } else {
+                            connectorLength = 200 * direction;
+                        }
+                        d = "M " + (startX+gap) + " " + offset.y + " " +
+                            "L " + (startX+gap+connectorLength) + " " + offset.y;
+                        group.path(d).style({
+                            "stroke": "#017ebb",
+                            "stroke-width": data.module.style.lineWidth
+                        });
+                        startX += gap + connectorLength;
+                        var cirlceStartX = startX;
+                        startX += gap;
+                        var rectWidth = data.module.style.rectWidth,
+                            rectHeight = data.module.style.rectHeight;
+                        group.rect(rectWidth, rectHeight).attr({
+                            x: direction > 0 ? startX : startX + direction*rectWidth,
+                            y: offset.y - rectHeight/2,
+                            rx: 10,
+                            ry: 10
+                        }).style({
+                            "stroke": level.color,
+                            "stroke-width": data.module.style.lineWidth,
+                            "fill": "transparent"
+                        });
+                        startX += direction*rectWidth;
+                        group.circle(data.module.style.connectorCircleRadius*2).attr({
+                            cx: cirlceStartX + gap,
+                            cy: offset.y
+                        }).style({
+                            "stroke": level.color,
+                            "stroke-width": data.module.style.lineWidth,
+                            "fill": data.style.backgroundColor
+                        });
+                        gap = 10;
+                        radius = data.module.style.circleRadius+data.module.style.circleInnerStroke+data.module.style.circleStrokeGap;
+                        group.circle(radius*2).attr({
+                            cx: startX + direction*gap,
+                            cy: offset.y - gap
+                        }).style({
+                            "stroke": level.color,
+                            "stroke-width": data.module.style.circleOuterStroke,
+                            "fill": data.style.backgroundColor
+                        });
+                        radius = data.module.style.circleRadius+data.module.style.circleInnerStroke/2;
+                        group.circle(radius*2).attr({
+                            cx: startX + direction*gap,
+                            cy: offset.y - gap
+                        }).style({
+                            "stroke": level.color,
+                            "stroke-width": data.module.style.circleInnerStroke,
+                            "fill": data.style.backgroundColor
+                        });
+                        var rect = group.plain(""+module.score).addClass("module-score"),
+                            rw = rect.node.getBoundingClientRect().width,
+                            rh = rect.node.getBoundingClientRect().height;
+                        rect.attr({
+                            x: startX+direction*gap - rw/2,
+                            y: offset.y-gap+rh/2-15
+                        });
+                        var title = group.plain(module.title).addClass("module-title"),
+                            tw = title.node.getBoundingClientRect().width,
+                            th = title.node.getBoundingClientRect().height,
+                            dec = group.plain("评估结果：").style("fill", data.module.style.subTitleColor),
+                            dw = dec.node.getBoundingClientRect().width,
+                            dh = dec.node.getBoundingClientRect().height,
+                            result = group.plain(module.result).style("fill", level.color),
+                            rw = result.node.getBoundingClientRect().width,
+                            rh = result.node.getBoundingClientRect().height,
+                            h = th + (dh + rh)/2 + 25,
+                            w = Math.max(tw, dw+rw);
+                        startX -= direction * data.module.style.rectWidth/2;
+                        title.attr({
+                            x: startX - w/2 + 10,
+                            y: offset.y - h/2 + th - 5
+                        });
+                        dec.attr({
+                            x: startX - w/2 + 10,
+                            y: offset.y + h/2 - 13
+                        });
+                        result.attr({
+                            x: startX - w/2 + dw + 10,
+                            y: offset.y + h/2 - 13
+                        });
+                        if (direction > 0) {
+                            title.attr({ x: parseFloat(title.attr("x")) - radius/2 - 10 });
+                            dec.attr({ x: parseFloat(dec.attr("x")) - radius/2 -10 });
+                            result.attr({ x: parseFloat(result.attr("x")) - radius/2 -10 });
+                        }
+                        if (index >= 1) {
+                            title.attr({ x: parseFloat(title.attr("x")) + 15 });
+                            dec.attr({ x: parseFloat(dec.attr("x")) + 15 });
+                            result.attr({ x: parseFloat(result.attr("x")) + 15 });
+                        }
+                    };
+                    var origin = {
+                            x: data.style.width / 2,
+                            y: 650
+                        },
+                        moduleLen = data.module.items.length,
+                        i, module;
+
+                    for (i = 0; i < moduleLen; i ++) {
+                        module = data.module.items[i];
+                        initBranch(container, module, i, moduleLen);
+                    }
+                    initCircle(container);
+                }
+                function initPage(container){
+                    initTab(container);
+                    initModule(container);
+                }
+                initSvg();
+            })(window);
+        </script>
+    {% endblock %}
+{% endblock %}

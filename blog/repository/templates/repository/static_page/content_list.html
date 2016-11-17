@@ -1,0 +1,22 @@
+{% extends "repository/static_page/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+    <title>{{ stuff.name }}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{{ stuff.name }} 页面列表</h1>
+    {% if static_pages %}
+        <ul>
+            {% for page in static_pages %}
+                <li><a href="{% url "repository_template_content" stuff.slug page.url_code %}">{{ page.label }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>这里一片空白</p>
+    {% endif %}
+{% endblock %}
+
+{% block static_page_footer %} {% endblock static_page_footer %}

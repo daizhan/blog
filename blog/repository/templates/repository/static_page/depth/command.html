@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+    <title>指令进展</title>
+{% endblock %}
+
+{% block base_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "repository/static_page/base.css" %}" />
+{% endblock base_css %}
+
+{% block page_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "repository/static_page/depth/main.css" %}" />
+{% endblock %}
+
+{% block body %}
+    <body>
+        {% block main %}
+            <div id="svg-content"></div>
+            <div class="zoom">
+                <button class="zoom-out">-</button>
+                <button class="zoom-in">+</button>
+            </div>
+        {% endblock %}
+        {% block page_js %}
+            <script src="{% static "/repository/static_page/depth/jquery.min.js" %}"></script>
+            <script src="{% static "/repository/static_page/depth/svg.min.js" %}"></script>
+            <script src="{% static "/repository/static_page/depth/main.js" %}"></script>
+            <script>
+                var data = {
+                    container: {
+                        title: "指令进展",
+                        x: 60,
+                        y: 60,
+                        commandModule: {
+                            x: 293,
+                            y: 263,
+                            items: [
+                                {
+                                    title: "War Room搭建", 
+                                    commands: [
+                                        {
+                                            moduleIndex: 0,
+                                            total: 1,
+                                            index: 0,
+                                            position: "top",
+                                            width: 330,
+                                            state: "on",
+                                            title: "人员确认"
+                                        }
+                                    ]
+                                },
+                                {
+                                    title: "远程接入",
+                                    commands: [
+                                        {
+                                            moduleIndex: 1,
+                                            total: 1,
+                                            index: 0,
+                                            position: "bottom",
+                                            width: 330,
+                                            state: "on",
+                                            title: "远程数据获取"
+                                        },
+                                    ]
+                                },
+                                {
+                                    title: "数据采集",
+                                    commands: [
+                                        {
+                                            moduleIndex: 2,
+                                            total: 3,
+                                            index: 0,
+                                            position: "mid",
+                                            width: 330,
+                                            state: "on",
+                                            title: "事故现象描述"
+                                        },
+                                        {
+                                            moduleIndex: 2,
+                                            total: 3,
+                                            index: 1,
+                                            position: "mid",
+                                            width: 330,
+                                            state: "on",
+                                            title: "数据采集方案"
+                                        },
+                                        {
+                                            moduleIndex: 2,
+                                            total: 3,
+                                            index: 2,
+                                            position: "mid",
+                                            width: 330,
+                                            state: "on",
+                                            title: "数据采集方案"
+                                        }
+                                    ]
+                                },
+                                {
+                                    title: "定位分析",
+                                    commands: [
+                                        {
+                                            moduleIndex: 3,
+                                            total: 4,
+                                            index: 0,
+                                            position: "mid",
+                                            width: 330,
+                                            state: "delay",
+                                            title: "X板斧下发"
+                                        },
+                                        {
+                                            moduleIndex: 3,
+                                            total: 4,
+                                            index: 1,
+                                            position: "mid",
+                                            width: 330,
+                                            state: "delay",
+                                            title: "定界初判"
+                                        },
+                                        {
+                                            moduleIndex: 3,
+                                            total: 4,
+                                            index: 2,
+                                            position: "mid",
+                                            width: 330,
+                                            state: "delay",
+                                            title: "恢复方案"
+                                        },
+                                        {
+                                            moduleIndex: 3,
+                                            total: 4,
+                                            index: 3,
+                                            position: "mid",
+                                            width: 330,
+                                            state: "end",
+                                            title: "再次采集方案"
+                                        }
+                                    ]
+                                },
+                                {
+                                    title: "方案实施",
+                                    commands: [
+                                        {
+                                            moduleIndex: 4,
+                                            total: 1,
+                                            index: 0,
+                                            position: "bottom",
+                                            width: 330,
+                                            state: "end",
+                                            title: "方案实施"
+                                        }
+                                    ]
+                                },
+                                {
+                                    title: "事故恢复",
+                                    commands: [
+                                        {
+                                            moduleIndex: 5,
+                                            total: 1,
+                                            index: 0,
+                                            position: "top",
+                                            width: 330,
+                                            state: "end",
+                                            title: "结果反馈"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        leftSide: {
+                            x: 108,
+                            y: 440,
+                            items: ["RL", "PSE", "L1"]
+                        },
+                        task: {
+                            x: 114,
+                            y: 1206,
+                            items: [
+                                {
+                                    person: "张莫某 lwx333444",
+                                    expect: 6,
+                                    total: 4,
+                                    progress: 60
+                                },
+                                {
+                                    person: "张莫某 lwx333444",
+                                    expect: 6,
+                                    total: 4,
+                                    progress: 99
+                                },
+                                {
+                                    person: "张莫某 lwx333444",
+                                    expect: 6,
+                                    total: 4,
+                                    progress: 10
+                                }
+                            ]
+                        },
+                        commandState: [
+                            {
+                                x: 375,
+                                y: 880,
+                                state: "on",
+                                title: "正在执行"
+                            },
+                            {
+                                x: 375,
+                                y: 965,
+                                state: "delay",
+                                title: "执行超时"
+                            },
+                            {
+                                x: 375,
+                                y: 1050,
+                                state: "end",
+                                title: "已执行"
+                            }
+                        ],
+                        connector: [
+                            {
+                                commands: [0, 1],
+                                startDirection: "right",
+                                endDirection: "top",
+                                connectType: "conner1"
+                            },
+                            {
+                                commands: [1, 2],
+                                startDirection: "top",
+                                endDirection: "left",
+                                connectType: "conner1"
+                            },
+                            {
+                                commands: [2, 3],
+                                startDirection: "bottom",
+                                endDirection: "top",
+                                connectType: "direct"
+                            },
+                            {
+                                commands: [3, 4],
+                                startDirection: "bottom",
+                                endDirection: "top",
+                                connectType: "direct"
+                            },
+                            {
+                                commands: [4, 6],
+                                startDirection: "right",
+                                endDirection: "left",
+                                connectType: "conner2"
+                            },
+                            {
+                                commands: [5, 6],
+                                startDirection: "bottom",
+                                endDirection: "top",
+                                connectType: "direct"
+                            },
+                            {
+                                commands: [5, 9],
+                                startDirection: "right",
+                                endDirection: "top",
+                                connectType: "conner1"
+                            },
+                            {
+                                commands: [6, 7],
+                                startDirection: "bottom",
+                                endDirection: "top",
+                                connectType: "direct"
+                            },
+                            {
+                                commands: [7, 8],
+                                startDirection: "bottom",
+                                endDirection: "top",
+                                connectType: "direct"
+                            },
+                            {
+                                commands: [9, 10],
+                                startDirection: "right",
+                                endDirection: "bottom",
+                                connectType: "conner1"
+                            }
+                        ]
+                    }
+                };
+                var draw = new D("svg-content", 3150, 1772, "#001727");
+                if (data.container) {
+                    draw.addContainer(draw.container, data.container);
+                    if (data.container.leftSide) {
+                        draw.addLeftSide(draw.container, data.container.leftSide);
+                    }
+                    if (data.container.task) {
+                        draw.addTask(draw.container, data.container.task);
+                    }
+                    if (data.container.commandState) {
+                        data.container.commandState.forEach(function(value){
+                            draw.addCommandState(draw.container, value);
+                        });
+                    }
+                    if (data.container.commandModule) {
+                        draw.addCommandModule(draw.container, data.container.commandModule);
+                    }
+                    if (data.container.connector) {
+                        data.container.connector.forEach(function(value){
+                            draw.addConnector(draw.container, value);
+                        });
+                    }
+                }
+                draw.render();
+            </script>
+        {% endblock %}
+    </body>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+    <title>专家召集</title>
+{% endblock %}
+
+{% block base_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "repository/static_page/base.css" %}" />
+{% endblock base_css %}
+
+{% block page_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "repository/static_page/depth/main.css" %}" />
+{% endblock %}
+
+{% block body %}
+    <body>
+        {% block main %}
+            <div id="svg-content"></div>
+            <div class="zoom">
+                <button class="zoom-out">-</button>
+                <button class="zoom-in">+</button>
+            </div>
+        {% endblock %}
+        {% block page_js %}
+            <script src="{% static "/repository/static_page/depth/jquery.min.js" %}"></script>
+            <script src="{% static "/repository/static_page/depth/svg.min.js" %}"></script>
+            <script src="{% static "/repository/static_page/depth/main.js" %}"></script>
+            <script>
+                var data = {
+                    container: {
+                        title: "专家召集",
+                        x: 60,
+                        y: 60,
+                        table: [
+                            {
+                                y: 354,
+                                paddingRight: 230,
+                                title: "一线专家",
+                                tr: [
+                                    ["AMSN", ["[中国] 深圳", 2], "hubo00338"],
+                                    ["AMSN", ["[海外] 新加坡", 2], "hubo00338"],
+                                    ["AMSN", ["[中国] 深圳", 2], "hubo00338"],
+                                    ["AMSN", ["[中国] 深圳", 2], "hubo00338"]
+                                ]
+                            },
+                            {
+                                y: 1113,
+                                paddingRight: 230,
+                                title: "二线专家",
+                                tr: [
+                                    ["AMSN", ["[中国] 深圳", 2], "hubo00338"],
+                                    ["AMSN", ["[海外] 新加坡", 2], "hubo00338"]
+                                ]
+                            }
+                        ]
+                    }
+                };
+                var draw = new D("svg-content", 3150, 1772, "#001727");
+                if (data.container) {
+                    draw.addContainer(draw.container, data.container);
+                    if (data.container.table) {
+                        data.container.table.forEach(function(value){
+                            draw.addExpert(draw.container, value);
+                        })
+                    }
+                    if (data.container.personList) {
+                        data.container.personList.forEach(function(person){
+                            draw.addPerson(draw.container, person);
+                        });
+                    }
+                }
+                draw.render();
+            </script>
+        {% endblock %}
+    </body>
+{% endblock %}

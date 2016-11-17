@@ -62,7 +62,7 @@ class RepositoryTemplateContent(BaseView):
     def initial(self):
         self.stuff_type = StuffType.static_page
 
-    def get(self, request, slug, url_code='index'):
+    def get(self, request, slug, url_code=''):
         stuff_list = Stuff.objects.filter(
             slug=slug, type=self.stuff_type, status=StatusType.normal,
             verify=VerifyType.verify_success
@@ -70,17 +70,29 @@ class RepositoryTemplateContent(BaseView):
         if not stuff_list:
             raise Http404("stuff not found")
         stuff = stuff_list[0]
-        static_pages = StaticPage.objects.filter(
-            url_code=url_code, stuff_id=stuff.id, status=StatusType.normal,
-            verify=VerifyType.verify_success
-        )[:1]
+        if (url_code):
+            static_pages = StaticPage.objects.filter(
+                url_code=url_code, stuff_id=stuff.id, status=StatusType.normal,
+                verify=VerifyType.verify_success
+            )[:1]
+        else:
+            static_pages = StaticPage.objects.filter(
+                stuff_id=stuff.id, status=StatusType.normal,
+                verify=VerifyType.verify_success
+            )
         if not static_pages:
             raise Http404("static page not found")
-        static_page = static_pages[0]
-        return self.render(
-            request, static_page.template,
-            data={"stuff": stuff, 'static_page': static_page}
-        )
+        if len(static_pages) > 1:
+            return self.render(
+                request, "repository/static_page/content_list.html",
+                data={"stuff": stuff, 'static_pages': static_pages}
+            )
+        else:
+            static_page = static_pages[0]
+            return self.render(
+                request, static_page.template,
+                data={"stuff": stuff, 'static_page': static_page}
+            )
 
 
 class RepositoryExercises(BaseView):

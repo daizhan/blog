@@ -1,0 +1,311 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+body, p, div{
+    padding: 0;
+    margin: 0;
+}
+#svg-content {
+    width: 100%;
+    height: 100%;
+}
+.zoom {
+    position: fixed;
+    bottom: 20px;
+    left: 40px;
+}
+.zoom button {
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff;
+    background-color: #999;
+    border-radius: 2px;
+    border: 0 none;
+    padding: 3px 8px;
+    cursor: pointer;
+}
+.zoom .zoom-out {
+    margin-right: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+text {
+    font-family: "Microsoft YaHei",Arial,sans-serif;
+    fill: #fff;
+}
+#svg-content .tab-title {
+    font-size: 32px;
+    letter-spacing: 4px;
+}
+.circle .line {
+    stroke-width: 10px;
+    fill: transparent;
+}
+.circle text {
+    font-size: 30px;
+    font-weight: bold;
+}
+.circle .score {
+    font-size: 110px;
+}
+.desc text{
+    font-size: 25px;
+}
+.desc .module-score {
+    font-size: 50px;
+}
+.desc .module-title {
+    font-size: 38px;
+    letter-spacing: 2px;
+}
+
+
+.page-title {
+    fill: #fff;
+    font-size: 76px;
+}
+.page-title-line {
+    fill: #47b4ff;
+}
+.page-top-line{
+    stroke: #0092f6;
+    stroke-width: 4;
+}
+.page-top-line-block, .page-right-line-block {
+    fill: #005692;
+}
+.page-container-line {
+    stroke: #47b4ff;
+    stroke-width: 4;
+    fill: transparent;
+}
+
+.command-title {
+    font-size: 42px;
+}
+.command-title.on ,
+.command-icon.on {
+    fill: #85ff4e;
+}
+.command-title.end ,
+.command-icon.end {
+    fill: #ffffff;
+}
+.command-title.delay ,
+.command-icon.delay {
+    fill: #fda900;
+}
+.command-line.on {
+    stroke: #85ff4e;
+}
+.command-line.end {
+    stroke: #ffffff;
+}
+.command-line.delay {
+    stroke: #fda900;
+}
+
+.command-state {
+    font-size: 38px;
+    fill: #fff;
+}
+.command-state-line {
+    stroke: #0078cc;
+    fill: transparent;
+}
+.command-state-icon.on {
+    fill: #85ff4e;
+}
+.command-state-icon.end {
+    fill: #ffffff;
+}
+.command-state-icon.delay {
+    fill: #fda900;
+}
+
+.side-line {
+    stroke: #0078cc;
+    fill: transparent;
+}
+.side-title {
+    font-size: 42px;
+    fill: #fff;
+}
+.module-line {
+    stroke: #0078cc;
+    fill: transparent;
+}
+.module-title {
+    font-size: 54px;
+    fill: #fff;
+}
+.task-line {
+    stroke: #055790;
+    fill: #092a42;
+}
+.task-title {
+    fill: #fff;
+    font-size: 48px;
+}
+.task-person {
+    fill: #76baf5;
+    font-size: 42px;
+}
+.task-total {
+    fill: #85ff4e;
+}
+.task-total-line {
+    fill: transparent;
+    stroke: #85ff4e;
+}
+.task-total-number {
+    fill: #85ff4e;
+    font-size: 54px;
+}
+.task-total-title {
+    fill: #85ff4e;
+    font-size: 42px;
+}
+.task-total-unit {
+    fill: #85ff4e;
+    font-size: 30px;
+    letter-spacing: 5px;
+}
+.task-expect-line {
+    fill: transparent;
+    stroke: #76baf5;
+}
+.task-expect-number {
+    font-size: 54px;
+    fill: #fff;
+}
+.task-expect-title {
+    font-size: 42px;
+    fill: #76baf5;
+}
+.task-expect-unit {
+    font-size: 30px;
+    fill: #fff;
+    letter-spacing: 5px;
+}
+
+.task-progress-line {
+    fill: transparent;
+    stroke: #76baf5;
+}
+.task-progress-content {
+    fill: #76baf5;
+}
+
+.person-table {
+    overflow: hidden;
+}
+.person-table text {
+    font-size: 42px;
+    fill: #fff;
+}
+.person-table .table-border {
+    stroke: #0078cc;
+    fill: transparent;
+}
+.person-table .even {
+    fill: rgba(71,180,255,0.15);
+}
+.person-table .odd {
+    fill: rgba(71,180,255,0.25);
+}
+.person-table .tr-title text {
+    font-size: 48px;
+}
+
+.expert-table text {
+    font-size: 42px;
+    fill: #fff;
+}
+.expert-table .table-title {
+    font-size: 60px;
+}
+.expert-table .table-border{
+    stroke: #0078cc;
+    fill: rgba(71,180,255,0.15);
+}
+.expert-table .even {
+    /* fill: rgba(71,180,255,0.15); */
+    fill: transparent;
+}
+.expert-table .odd {
+    fill: rgba(71,180,255,0.25);
+}
+.expert-table .title-line {
+    stroke: #0078cc;
+    fill: #001727;
+}
+.table-cell-arrow rect{
+    fill: #0078cc;
+}
+.table-arrow rect{
+    /* fill: #00375d; */
+    fill: #00375d;
+}
+.table-cell-number rect{
+    fill: #08adfd;
+}
+.table-cell-number text{
+    font-size: 42px;
+    fill: #fff;
+}
+.table-cell-circle {
+    fill: #0d629d;
+}
+.table-circle {
+    fill: #0078cc;
+}
+
+.event-summary .table-title {
+    font-size: 60px;
+    fill: #fff;
+}
+.event-summary .title-line {
+    stroke: #47b4ff;
+    fill: #001828;
+}
+
+.event-summary .event-info-type,
+.event-summary .event-info-content{
+    fill: #fff;
+    font-size: 46px;
+}
+.event-summary .event-info-line{
+    fill: #06253b;
+}
+.event-summary .event-outer-line{
+    stroke: #055790;
+    fill: transparent;
+}
+.event-summary .event-duration-time{
+    font-size: 160px;
+    fill: #000;
+    font-weight: bold;
+}
+.event-summary .progress-number{
+    fill: #fff;
+    font-size: 72px;
+}
+.event-summary .outer-line{
+    stroke: #055790;
+    fill: #092a42;
+}
+.event-summary .progress-label text{
+    font-size: 46px;
+    fill: #fff;
+}
+.event-summary .progress-label path{
+    fill: #0078cc;
+}
+.event-summary .progress-prompt{
+    font-size:  62px;
+    fill: #fff;
+}

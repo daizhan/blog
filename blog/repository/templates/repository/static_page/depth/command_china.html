@@ -1,0 +1,274 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+    <title>指令进展中国区</title>
+{% endblock %}
+
+{% block base_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "repository/static_page/base.css" %}" />
+{% endblock base_css %}
+
+{% block page_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "repository/static_page/depth/main.css" %}" />
+{% endblock %}
+
+{% block body %}
+    <body>
+        {% block main %}
+            <div id="svg-content"></div>
+            <div class="zoom">
+                <button class="zoom-out">-</button>
+                <button class="zoom-in">+</button>
+            </div>
+        {% endblock %}
+        {% block page_js %}
+            <script src="{% static "/repository/static_page/depth/jquery.min.js" %}"></script>
+            <script src="{% static "/repository/static_page/depth/svg.min.js" %}"></script>
+            <script src="{% static "/repository/static_page/depth/main.js" %}"></script>
+            <script>
+                var data = {
+                    container: {
+                        title: "指令进展中国区",
+                        x: 60,
+                        y: 60,
+                        commands: {
+                            gap: {
+                                x: 554,
+                                y: 85,
+                                smallY: 45
+                            },
+                            items: [
+                                {
+                                    x: 998,
+                                    y: 275,
+                                    state: "on",
+                                    title: "人员确认"
+                                },
+                                {
+                                    pos: "left",
+                                    translateY: true,
+                                    small: true,
+                                    state: "on",
+                                    title: "事故现象澄清"
+                                },
+                                {
+                                    pos: "right",
+                                    small: true,
+                                    time: 2,
+                                    state: "on",
+                                    title: "信息采集/远程接入"
+                                },
+                                {
+                                    pos: "left",
+                                    translateY: true,
+                                    small: true,
+                                    state: "delay",
+                                    title: "X板斧下发"
+                                },
+                                {
+                                    pos: "bottom",
+                                    small: false,
+                                    state: "delay",
+                                    title: "基本故障信息分析"
+                                },
+                                {
+                                    pos: "left",
+                                    small: false,
+                                    state: "on",
+                                    title: "事故现象澄清"
+                                },
+                                {
+                                    pos: "bottom",
+                                    small: false,
+                                    state: "on",
+                                    title: "事故现象澄清"
+                                },
+                                {
+                                    pos: "right",
+                                    small: false,
+                                    state: "delay",
+                                    title: "制定故障定界"
+                                },
+                                {
+                                    pos: "right",
+                                    small: false,
+                                    state: "delay",
+                                    title: "定界初判"
+                                },
+                                {
+                                    pos: "left",
+                                    translateY: true,
+                                    small: false,
+                                    state: "delay",
+                                    title: "制定恢复方案"
+                                },
+                                {
+                                    pos: "bottom",
+                                    small: false,
+                                    state: "end",
+                                    title: "方案审批及实施"
+                                },
+                                {
+                                    pos: "bottom",
+                                    small: false,
+                                    state: "end",
+                                    title: "结果反馈"
+                                }
+                            ]
+                        },
+                        task: [
+                            {
+                                x: 2356,
+                                y: 255,
+                                items: [
+                                    {
+                                        person: "张莫某 lwx333444",
+                                        expect: 6,
+                                        total: 4,
+                                        progress: 10
+                                    }
+                                ]
+                            },
+                            {
+                                x: 2356,
+                                y: 730,
+                                items: [
+                                    {
+                                        person: "张莫某 lwx333444",
+                                        expect: 6,
+                                        total: 4,
+                                        progress: 10
+                                    }
+                                ]
+                            }
+                        ],
+                        connector: [
+                            {
+                                commands: [0, 1],
+                                startDirection: "bottom",
+                                endDirection: "top",
+                                connectType: "conner1"
+                            },
+                            {
+                                commands: [0, 2],
+                                startDirection: "bottom",
+                                endDirection: "top",
+                                connectType: "conner1"
+                            },
+                            {
+                                commands: [3, 1],
+                                startDirection: "top",
+                                endDirection: "bottom",
+                                connectType: "conner1"
+                            },
+                            {
+                                commands: [3, 2],
+                                startDirection: "top",
+                                endDirection: "bottom",
+                                connectType: "conner1"
+                            },
+                            {
+                                commands: [3, 4],
+                                startDirection: "bottom",
+                                endDirection: "top",
+                                connectType: "direct"
+                            },
+                            {
+                                points: [
+                                    {x: 1148, y: 708, marker: {x: 1148, y: 701}},
+                                    {x: 1148, y: 728.5},
+                                    {x: 1702, y: 728.5},
+                                    {x: 1702, y: 941, marker: {x: 1702, y: 948}}
+                                ]
+                            },
+                            {
+                                commands: [4, 5],
+                                startDirection: "left",
+                                endDirection: "right",
+                                connectType: "direct"
+                            },
+                            {
+                                commands: [5, 6],
+                                startDirection: "bottom",
+                                endDirection: "top",
+                                connectType: "direct"
+                            },
+                            {
+                                commands: [6, 7],
+                                startDirection: "right",
+                                endDirection: "left",
+                                connectType: "direct"
+                            },
+                            {
+                                commands: [7, 9],
+                                startDirection: "bottom",
+                                endDirection: "top",
+                                connectType: "direct"
+                            },
+                            {
+                                commands: [9, 10],
+                                startDirection: "bottom",
+                                endDirection: "top",
+                                connectType: "direct"
+                            },
+                            {
+                                commands: [10, 11],
+                                startDirection: "bottom",
+                                endDirection: "top",
+                                connectType: "direct"
+                            },
+                            {
+                                commands: [11, 8],
+                                startDirection: "right",
+                                endDirection: "bottom",
+                                connectType: "conner1"
+                            }
+                        ]
+                    }
+                };
+                var draw = new D("svg-content", 3150, 1772, "#001727"),
+                    i, len, command, commandGap, commandOffset, commandData, x, y, gap;
+                if (data.container) {
+                    draw.addContainer(draw.container, data.container);
+                    if (data.container.commands) {
+                        gap = data.container.commands.gap;
+                        for (i = 0, len = data.container.commands.items.length; i < len; i ++) {
+                            commandData = data.container.commands.items[i];
+                            commandGap = commandData.small ? gap.smallY : gap.y;
+                            if (commandData.pos === "left") {
+                                commandOffset = -gap.x;
+                            } else if (commandData.pos === "right") {
+                                commandOffset = gap.x;
+                            } else {
+                                commandOffset = 0;
+                            }
+                            commandData.time = commandData.time || 1;
+                            if (i != 0) {
+                                command = draw.commands[i-1];
+                                commandData.centrlY = command.y+command.height/2;
+                                if (commandData.pos === "bottom" || commandData.translateY) {
+                                    commandData.centrlY += command.height + commandGap;
+                                }
+                                commandData.centrlX = (command.x+command.width/2) + commandOffset*commandData.time;
+                            }
+                            draw.addCommand(draw.container, commandData);
+                        }
+                    }
+                    if (data.container.task) {
+                        data.container.task.forEach(function(value){
+                            draw.addTask(draw.container, value);
+                        });
+                    }
+                    if (data.container.connector) {
+                        data.container.connector.forEach(function(value){
+                            draw.addConnector(draw.container, value);
+                        });
+                    }
+                }
+                draw.render();
+            </script>
+        {% endblock %}
+    </body>
+{% endblock %}
