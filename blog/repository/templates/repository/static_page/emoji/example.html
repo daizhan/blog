@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>emoji match test</title>
+    {% load staticfiles %}
+    <style>
+        input {
+            width: 100%;
+            border-radius: 0;
+            border-left: 0;
+            border-right: 0;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>emoji match test</h1>
+    <p>input emoji, show match result and emoji unicode</p>
+    <p id="content"></p>
+    <p id="unicode"></p>
+    <p id="emoji"></p>
+    <input id="text-box" type="text" value="">
+    <script src="{% static "repository/static_page/emoji/emoji.js" %}"></script>
+
+    <script>
+        var emoji = document.getElementById("emoji");
+        var p = document.getElementById("content");
+        var up = document.getElementById("unicode");
+        var input = document.getElementById("text-box");
+
+        input.addEventListener("input", function(){
+            emoji.innerHTML = "emoji " + Emoji.match(input.value).join("");
+            p.innerHTML = "match result: " +  Emoji.replace(input.value, "yes, ");
+            up.innerHTML = "unicode: " +  Emoji.replace(input.value, function(match){
+                var prefix = "U+";
+                var codes = match.split("").map(function(value){
+                    var code = value.charCodeAt(0).toString(16);
+                    if (code.length < 4){
+                        code = "00"+code;
+                    }
+                    return code.toUpperCase();
+                });
+                return prefix + codes.join(" "+prefix) + ", ";
+            });
+        });
+    </script>
+</body>
+</html>
