@@ -31,7 +31,12 @@
         var input = document.getElementById("text-box");
 
         input.addEventListener("input", function(){
-            emoji.innerHTML = "emoji " + Emoji.match(input.value).join("");
+            var match = Emoji.match(input.value);
+            if (match) {
+                emoji.innerHTML = "emoji: " + match.join("");
+            } else {
+                emoji.innerHTML = "emoji: ";
+            }
             p.innerHTML = "match result: " +  Emoji.replace(input.value, "yes, ");
             up.innerHTML = "unicode: " +  Emoji.replace(input.value, function(match){
                 var prefix = "U+";
