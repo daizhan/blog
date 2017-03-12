@@ -1,0 +1,471 @@
+/*弹框提示*/
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.popup.show {
+    opacity: 1;
+}
+
+.popup-container {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+.popup-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.popup p {
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px 20px;
+    display: inline;
+    font-size: 14px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    border: 0 none;
+}
+
+button {
+    outline: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.label {
+    border-radius: 18px;
+    height: 36px;
+    background-color: #fff;
+    text-align: center;
+    line-height: 36px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 36px;
+    padding-left: 18px;
+    position: relative;
+    font-size: 16px;
+    color: #333;
+    overflow: hidden;
+}
+
+.label button {
+    background: url(../img/add_normal.png) no-repeat center center;
+    right: 6px;
+    top: 6px;
+    width: 24px;
+    height: 24px;
+    border: 0 none;
+    border-radius: 0;
+    position: absolute;
+    text-indent: -100000px;
+    cursor: pointer;
+}
+
+body {
+    background-color: #eee;
+    font-size: 14px;
+}
+
+.header {
+    background-color: #fff;
+    height: 80px;
+    width: 100%;
+}
+
+.header .wrapper {
+    width: 1190px;
+    margin: 0 auto;
+    height: 100%;
+    line-height: 80px;
+}
+
+.header a {
+    color: #0d0e10;
+}
+
+.logo {
+    float: left;
+    height: 100%;
+}
+
+.logo a {
+    display: block;
+    font-size: 24px;
+    padding-left: 65px;
+    background: url("../img/logo.png") 8px center no-repeat;
+    height: 100%;
+}
+
+.user {
+    float: right;
+    height: 100%;
+}
+
+.user>* {
+    float: left;
+}
+
+.user a img {
+    vertical-align: middle;
+    padding-right: 10px;
+}
+
+.user span {
+    margin: 25px 20px;
+    width: 1px;
+    height: 30px;
+    background-color: #f6f6f6;
+}
+
+.user .logout {
+    color: #fe2727;
+    margin-right: 10px;
+}
+
+.main {
+    width: 1190px;
+    margin: 10px auto 0;
+    background-color: #fff;
+}
+
+.nav {
+    height: 50px;
+    margin-left: 20px;
+    line-height: 50px;
+}
+
+.nav li {
+    float: left;
+}
+
+.nav li:after {
+    content: ">";
+    padding: 0 10px;
+    color: #999;
+}
+
+.nav li.last:after {
+    display: none;
+}
+
+.nav a {
+    color: #999;
+}
+
+.nav a.current {
+    color: #247bf5;
+}
+
+.body {
+    padding: 20px;
+}
+
+div.body:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.main-page {
+    float: left;
+}
+
+.page {
+    width: 340px;
+    height: 604px;
+    background-color: #eee;
+}
+
+.app-bar {
+    vertical-align: top;
+    width: 100%;
+    height: 57px;
+}
+
+.team-info {
+    position: relative;
+    text-align: center;
+    padding: 0 16px;
+    height: 208px;
+    background: url(../img/team_bg.jpg) no-repeat;
+}
+
+.team-info img {
+    width: 67px;
+    height: 67px;
+    margin: 24px;
+    vertical-align: top;
+}
+
+.team-info h3 {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.team-info p {
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+    text-align: left;
+}
+
+.edit-info {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+}
+
+.edit-info button {
+    border: 0 none;
+    padding: 0 0 0 18px;
+    background: url(../img/edit_icon.png) left center no-repeat;
+    color: rgb(255, 255, 255);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.management li {
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #eee;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.management li.empty {
+    color: #1d75f0;
+    text-align: center;
+    line-height: 106px;
+}
+
+.management li.current div {
+    background: #fff;
+}
+
+.management li.empty span {
+    background: url(../img/add.png) left center no-repeat;
+    padding-left: 20px;
+}
+
+.management li.current,
+.management li.has-content.current {
+    background-color: #237eff;
+}
+
+.management li.has-content {
+    font-size: 14px;
+    color: #333;
+    background-color: #eee;
+}
+
+.management li.has-content div {
+    min-height: 86px;
+    padding-bottom: 20px;
+}
+
+.management .has-content h5 {
+    font-size: 14px;
+    margin-left: 12px;
+    height: 48px;
+    line-height: 48px;
+}
+
+.management .has-content ul {
+    width: 100%;
+    overflow: hidden;
+}
+
+.management .has-content li {
+    float: left;
+    margin-left: 12px;
+    margin-bottom: 12px;
+    min-width: 8s0px;
+    max-width: 290px;
+    line-height: 27px;
+    height: 27px;
+    padding: 0 10px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #e5e9ef;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 13.5px;
+}
+
+.management li.last {
+    border-bottom: none;
+}
+
+.bottom-btns {
+    width: 340px;
+    text-align: center;
+    margin: 34px 0 14px;
+}
+
+.main-page .btn {
+    width: 128px;
+    height: 38px;
+    font-size: 18px;
+}
+
+.release {
+    background: #428bef;
+    color: #fff;
+}
+
+.preview {
+    background: #fff;
+    margin-left: 20px;
+    color: #838338;
+}
+
+.edit-area {
+    float: left;
+    margin-left: 14px;
+}
+
+.edit-area .page {
+    width: 350px;
+    margin-left: 18px;
+    float: left;
+    padding: 0 15px;
+}
+
+.edit-area h3 {
+    color: #333;
+    height: 52px;
+    line-height: 52px;
+}
+
+.edit-area .empty {
+    text-align: center;
+    padding-top: 100px;
+}
+
+.edit-area .empty img {
+    width: 145px;
+    height: 145px;
+    vertical-align: top;
+}
+
+.edit-area .empty p {
+    margin-top: 20px;
+    color: #999;
+    line-height: 1.4;
+}
+
+.edit-area li {
+    margin-bottom: 13px;
+}
+
+.common-question li {
+    width: 100%;
+}
+
+.common-question .label {
+    width: 296px;
+}
+
+.common-question li button {
+    background-image: url(../img/remove_normal.png);
+}
+
+.common-question li:hover button {
+    background-image: url(../img/remove_active.png);
+}
+
+.placeholder {
+    border: 1px dashed #d2d2d2;
+    border-radius: 20px;
+    height: 34px;
+}
+
+.label-list ul {
+    margin-left: -16px;
+    overflow: hidden;
+}
+
+.label-list li {
+    float: left;
+    width: 167px;
+    margin-left: 16px;
+}
+
+.label-list .label {
+    width: 112px;
+    background-color: #f8f8f8;
+    font-size: 15px;
+}
+
+.label-list li button {
+    background-image: url(../img/add_normal.png);
+}
+
+.label-list li:hover button {
+    background-image: url(../img/add_active.png);
+}
+
+.edit-area .bottom-btns {
+    width: auto;
+    clear: both;
+    text-align: left;
+    position: relative;
+    top: 34px;
+    left: 18px;
+}
+
+.edit-area .bottom-btns .btn {
+    width: 75px;
+    height: 34px;
+    color: #428bef;
+    border: 1px solid #428bef;
+    background: #fff;
+}

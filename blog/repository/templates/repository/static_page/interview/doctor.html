@@ -1,0 +1,152 @@
+{% extends "repository/static_page/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+    <title>个人中心</title>
+{% endblock %}
+
+{% block page_css %}
+    <link rel="stylesheet" href="{% static "repository/static_page/interview/css/main.css" %}">
+{% endblock %}
+
+{% block main %}
+    <div class="header">
+        <div class="wrapper">
+            <h1 class="logo">
+                <a href="">myDoctor后台管理平台</a>
+            </h1>
+            <div class="user">
+                <a href="#">
+                    <img src="{% static "repository/static_page/interview/img/user_avatar.png" %}" alt=""> 张强医疗集团
+                </a>
+                <span></span>
+                <a class="logout" href="#">退出</a>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <ul class="nav">
+            <li><a href="">myDoctor</a></li>
+            <li class="last"><a class="current">团队主页</a></li>
+        </ul>
+        <div class="body">
+            <div class="main-page">
+                <div class="content page">
+                    <img class="app-bar" src="{% static "repository/static_page/interview/img/appbar.png" %}" alt="">
+                    <div class="team-info">
+                        <img src="{% static "repository/static_page/interview/img/team_logo.png" %}" alt="怡禾健康">
+                        <h3>怡禾健康</h3>
+                        <p>中山大学孙逸仙纪念医院由广东中山大学属医院林峰胃肠道肿瘤的深医院林峰.</p>
+                        <div class="edit-info">
+                            <button>编辑</button>
+                        </div>
+                    </div>
+                    <ul class="management">
+                        <li class="js-add-question empty">
+                            <div class="wrapper">
+                                <span>添加常见问题</span>
+                            </div>
+                        </li>
+                        <!--
+                        <li class="has-content">
+                            <div class="wrapper">
+                                <h5>常见问题</h5>
+                                <ul>
+                                    <li>感冒</li>
+                                    <li>新生儿疾病</li>
+                                    <li>新生儿疾病新生儿疾病新生儿疾病新生儿疾病新生儿疾病新生儿疾病新生儿疾病</li>
+                                </ul>
+                            </div>
+                        </li>
+                        -->
+                        <li class="empty">
+                            <div class="wrapper">
+                                <span>添加常见问题</span>
+                            </div>
+                        </li>
+                        <li class="last empty">
+                            <div class="wrapper">
+                                <span>添加常见问题</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bottom-btns">
+                    <button class="release btn">发布</button>
+                    <button class="preview btn">预览</button>
+                </div>
+            </div>
+            <div class="edit-area hidden">
+                <div class="common-question page">
+                    <h3>主页显示常见问题 &bull; <span class="question-num">0</span>/<span class="question-max">8</span></h3>
+                    <!--
+                    <div class="empty">
+                        <img src="img/empty.png" alt="">
+                        <p>从右侧点选或拖动您需要在主页呈现的常见问题，<br/>该标签内的医生会自动匹配。（最多可添加8个）</p>
+                    </div>
+                    <ul>
+                        <li>
+                            <p class="label">感冒<button>移除</button></p>
+                        </li>
+                        <li>
+                            <p class="label">感冒<button>移除</button></p>
+                        </li>
+                        <li>
+                            <p class="label">感冒<button>移除</button></p>
+                        </li>
+                        <li>
+                            <p class="label">一个常常的感冒一个常常的感冒一个常常的感冒一个常常的感冒<button>移除</button></p>
+                        </li>
+                        <li class="placeholder"></li>
+                        <li class="placeholder"></li>
+                        <li class="placeholder"></li>
+                        <li class="placeholder"></li>
+                    </ul>
+                    -->
+                </div>
+                <div class="label-list page">
+                    <h3>标签库 &bull; <span class="label-num">0</span></h3>
+                    <!--
+                    <ul>
+                        <li>
+                            <p class="label">感冒<button>添加</button></p>
+                        </li>
+                        <li>
+                            <p class="label">感冒<button>添加</button></p>
+                        </li>
+                        <li>
+                            <p class="label">感冒<button>添加</button></p>
+                        </li>
+                        <li>
+                            <p class="label">慢性鼻炎<button>添加</button></p>
+                        </li>
+                        <li>
+                            <p class="label">儿童科基因高热量食物<button>添加</button></p>
+                        </li>
+                    </ul>
+                    -->
+                </div>
+                <div class="bottom-btns">
+                    <button class="save btn">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <div class="popup">
+        <div class="popup-container">
+            <div class="popup-wrapper">
+                <p>展示标签已满8个</p>
+            </div>
+        </div>
+    </div>
+    -->
+
+{% endblock %}
+
+{% block page_js %}
+    <script src="{% static "repository/static_page/interview/js/jquery.js" %}"></script>
+    <script src="{% static "repository/static_page/interview/js/main.js" %}"></script>
+{% endblock %}
+
